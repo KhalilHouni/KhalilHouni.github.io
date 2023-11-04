@@ -34,6 +34,11 @@
             transition: all 0.3s ease;
         }
 
+        .game-description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
         .play-button {
             background-color: #4CAF50;
             color: white;
@@ -48,8 +53,6 @@
             align-items: center;
             justify-content: center;
             margin: 20px;
-            font-size: 18px;
-            text-align: center;
         }
 
         .game-container.opened .game-button {
@@ -75,14 +78,15 @@
 
     <div class="game-container">
         <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')"></div>
-        <div class="play-button" id="adventure-play-button" onclick="launchGame('pikokingdom.html')">Press to Play</div>
+        <div id="adventure-details" class="game-details">
+            <div class="game-description">Adventure Game Description Goes Here.</div>
+            <div class="play-button" onclick="launchGame('adventure.html')">Press to Play</div>
+        </div>
 
-        <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')"></div>
-        <div class="play-button" id="shmup-play-button" onclick="launchGame('shmupfinal.html')">Press to Play</div>
-
-        <div class="game-details">
-            <div id="game-title"></div>
-            <div id="game-description"></div>
+        <div id="chump-button" class="game-button" onclick="toggleGameDetails('chump')"></div>
+        <div id="chump-details" class="game-details">
+            <div class="game-description">Chump Game Description Goes Here.</div>
+            <div class="play-button" onclick="launchGame('chump.html')">Press to Play</div>
         </div>
     </div>
 
@@ -92,16 +96,15 @@
 
     <script>
         function toggleGameDetails(game) {
-            const gameDetails = document.querySelector('.game-details');
-            const gameTitle = document.getElementById('game-title');
-            const gameDescription = document.getElementById('game-description');
+            const adventureDetails = document.getElementById('adventure-details');
+            const chumpDetails = document.getElementById('chump-details');
 
             if (game === 'adventure') {
-                gameTitle.textContent = 'Piko Kingdom';
-                gameDescription.textContent = 'Description for Piko Kingdom goes here.';
-            } else if (game === 'shmup') {
-                gameTitle.textContent = 'Shmup Final';
-                gameDescription.textContent = 'Description for Shmup Final goes here.';
+                adventureDetails.style.display = 'flex';
+                chumpDetails.style.display = 'none';
+            } else if (game === 'chump') {
+                adventureDetails.style.display = 'none';
+                chumpDetails.style.display = 'flex';
             }
 
             document.querySelector('.game-container').classList.toggle('opened');
