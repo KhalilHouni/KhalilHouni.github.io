@@ -81,6 +81,23 @@
             font-size: 14px;
             color: #555;
         }
+
+            @media screen and (max-width: 768px) {
+    .game-button,
+    .game-details {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .game-container.opened .game-button,
+    .game-container.opened .game-details {
+        width: 100%;
+    }
+
+    .game-button img {
+        object-fit: contain; /* Ajustez le style de l'image pour les mobiles si nécessaire */
+    }
+}
     </style>
  
 </head>
