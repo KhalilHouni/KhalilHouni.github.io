@@ -34,9 +34,16 @@
             transition: all 0.3s ease;
         }
 
+        .game-button img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
         .game-description {
             font-size: 18px;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
 
         .play-button {
@@ -77,16 +84,26 @@
     <h1>Choose a Pico-8 Game</h1>
 
     <div class="game-container">
-        <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')"></div>
+        <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')">
+            <img src="Pico Kingdom.jpg" alt="Pico Kingdom">
+        </div>
         <div id="adventure-details" class="game-details">
-            <div class="game-description">Adventure Game Description Goes Here.</div>
-            <div class="play-button" onclick="launchGame('adventure.html')">Press to Play</div>
+            <div class="game-description">
+                <img src="Pico Kingdom.jpg" alt="Pico Kingdom">
+                Adventure Game Description Goes Here.
+            </div>
+            <div class="play-button" onclick="launchGame('pikokingdom.html')">Press to Play</div>
         </div>
 
-        <div id="chump-button" class="game-button" onclick="toggleGameDetails('chump')"></div>
-        <div id="chump-details" class="game-details">
-            <div class="game-description">Chump Game Description Goes Here.</div>
-            <div class="play-button" onclick="launchGame('chump.html')">Press to Play</div>
+        <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')">
+            <img src="Cool Space.jpg" alt="Cool Space">
+        </div>
+        <div id="shmup-details" class="game-details">
+            <div class="game-description">
+                <img src="Cool Space.jpg" alt="Cool Space">
+                Chump Game Description Goes Here.
+            </div>
+            <div class="play-button" onclick="launchGame('shmupfinal.html')">Press to Play</div>
         </div>
     </div>
 
@@ -97,14 +114,14 @@
     <script>
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
-            const chumpDetails = document.getElementById('chump-details');
+            const shmupDetails = document.getElementById('shmup-details');
 
             if (game === 'adventure') {
                 adventureDetails.style.display = 'flex';
-                chumpDetails.style.display = 'none';
-            } else if (game === 'chump') {
+                shmupDetails.style.display = 'none';
+            } else if (game === 'shmup') {
                 adventureDetails.style.display = 'none';
-                chumpDetails.style.display = 'flex';
+                shmupDetails.style.display = 'flex';
             }
 
             document.querySelector('.game-container').classList.toggle('opened');
