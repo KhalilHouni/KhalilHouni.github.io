@@ -2,32 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose a Pico-8 Game</title>
-    <style>
-        /* Your existing CSS styles */
-
-        .game-details {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .game-container.opened .game-button {
-            width: 0;
-            margin: 20px;
-            opacity: 0;
-        }
-
-        .game-container.opened .game-details {
-            display: flex;
-        }
-    </style>
+    <!-- Your existing head content -->
 </head>
 
 <body>
@@ -38,9 +13,11 @@
 
         <!-- Adventure game button -->
         <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')"></div>
+        <div class="play-button" id="adventure-play-button" onclick="launchGame('pikokingdom.html')">Press to Play</div>
 
         <!-- Shmup game button -->
         <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')"></div>
+        <div class="play-button" id="shmup-play-button" onclick="launchGame('shmupfinal.html')">Press to Play</div>
 
         <!-- Game details container -->
         <div class="game-details">
@@ -72,8 +49,15 @@
             // Toggle opened class to trigger animation
             document.querySelector('.game-container').classList.toggle('opened');
         }
+
+        function launchGame(gameUrl) {
+            window.location.href = gameUrl;
+        }
     </script>
+
+    <!-- You can add additional content or styling here if needed -->
 
 </body>
 
 </html>
+
