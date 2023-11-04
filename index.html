@@ -82,7 +82,12 @@
             color: #555;
         }
 
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .game-button,
     .game-details {
         width: 80%;
@@ -92,10 +97,6 @@
     .game-container.opened .game-button,
     .game-container.opened .game-details {
         width: 100%;
-    }
-
-    .game-button img {
-        object-fit: contain; /* Ajustez le style de l'image pour les mobiles si nécessaire */
     }
 }
     </style>
