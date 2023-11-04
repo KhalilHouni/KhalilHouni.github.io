@@ -14,27 +14,41 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            background-color: #f9f9f9; /* Light gray background color */
         }
 
         .game-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 150px;
-            height: 150px;
-            margin: 10px;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
             font-size: 20px;
             font-weight: bold;
             text-align: center;
             cursor: pointer;
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            background-color: white; /* White background color for the buttons */
         }
 
         #adventure-button {
-            background-color: #4CAF50;
+            background-image: url('adventure.jpg'); /* Replace 'adventure.jpg' with the actual path to your Adventure game image */
+            background-size: cover;
+            background-position: center;
         }
 
         #shmup-button {
-            background-color: #f44336;
+            background-image: url('shmup.jpg'); /* Replace 'shmup.jpg' with the actual path to your Shmup game image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -46,17 +60,23 @@
     <div id="adventure-button" class="game-button" onclick="redirectToAdventureGame()">Adventure</div>
     <div id="shmup-button" class="game-button" onclick="redirectToShmupGame()">Shmup</div>
 
+    <div class="footer">
+        Made by Khalil Houni
+    </div>
+
     <script>
         function redirectToAdventureGame() {
             window.location.href = "pikokingdom.html"; 
         }
 
         function redirectToShmupGame() {
-            window.location.href = "shmupfinal.html"; 
+            window.location.href = "shmupfinal.html";
         }
     </script>
 
+   
 
 </body>
 
 </html>
+
