@@ -5,21 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pico-8 Games</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            max-width: 100vw;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 80vh; /* You can adjust this value to fit your content properly on mobile screens */
+            max-width: 100%; /* Ensure the game doesn't stretch too wide */
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>hello</h1>
+    <h1>Hello</h1>
 
     <!-- Include the Pico-8 game files -->
     <!-- Link to shmupfinal.js -->
     <script src="shmupfinal.js"></script>
 
-    <!-- Link to chump.html -->
-    <iframe src="shmupfinal.html" width="800" height="600" frameborder="0"></iframe>
+    <!-- Link to shmupfinal.html -->
+    <iframe src="shmupfinal.html"></iframe>
 
     <!-- You can add additional content or styling here if needed -->
 
 </body>
 
 </html>
-
