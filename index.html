@@ -2,29 +2,88 @@
 <html lang="en">
 
 <head>
-    <!-- Your existing head content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Pico-8 Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .game-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .play-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .game-details {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .game-container.opened .game-button {
+            width: 0;
+            margin: 20px;
+            opacity: 0;
+        }
+
+        .game-container.opened .game-details {
+            display: flex;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Choose a Pico-8 Game</h1>
 
-    <!-- Game container for animation -->
     <div class="game-container">
-
-        <!-- Adventure game button -->
         <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')"></div>
         <div class="play-button" id="adventure-play-button" onclick="launchGame('pikokingdom.html')">Press to Play</div>
 
-        <!-- Shmup game button -->
         <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')"></div>
         <div class="play-button" id="shmup-play-button" onclick="launchGame('shmupfinal.html')">Press to Play</div>
 
-        <!-- Game details container -->
         <div class="game-details">
             <div id="game-title"></div>
             <div id="game-description"></div>
         </div>
-
     </div>
 
     <div class="footer">
@@ -37,7 +96,6 @@
             const gameTitle = document.getElementById('game-title');
             const gameDescription = document.getElementById('game-description');
 
-            // Set game details based on the clicked game
             if (game === 'adventure') {
                 gameTitle.textContent = 'Piko Kingdom';
                 gameDescription.textContent = 'Description for Piko Kingdom goes here.';
@@ -46,7 +104,6 @@
                 gameDescription.textContent = 'Description for Shmup Final goes here.';
             }
 
-            // Toggle opened class to trigger animation
             document.querySelector('.game-container').classList.toggle('opened');
         }
 
@@ -54,10 +111,6 @@
             window.location.href = gameUrl;
         }
     </script>
-
-    <!-- You can add additional content or styling here if needed -->
-
 </body>
 
 </html>
-
