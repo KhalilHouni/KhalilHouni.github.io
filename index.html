@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcomy to my website!</title>
+    <title>Welcome to my website!</title>
         <style>
         body {
             margin: 0;
@@ -148,11 +148,11 @@
     </div>
 
     <script>
- const konamiCode = ['s', 'e', 'c', 't'];
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiCodeIndex = 0;
 
 function handleKonamiCode(event) {
-    const key = event.key.toLowerCase(); // Convertir la touche en minuscules pour assurer la correspondance
+    const key = event.key;
     if (key === konamiCode[konamiCodeIndex]) {
         konamiCodeIndex++;
         if (konamiCodeIndex === konamiCode.length) {
@@ -165,8 +165,6 @@ function handleKonamiCode(event) {
 }
 
 // Écoutez les événements de touche pour détecter le code Konami
-document.addEventListener('keydown', handleKonamiCode);
-
 document.addEventListener('keydown', handleKonamiCode);
 
         function toggleGameDetails(game) {
