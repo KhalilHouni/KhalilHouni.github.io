@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to my website!</title>
+    <title>Welcomec to my website!</title>
         <style>
         body {
             margin: 0;
@@ -163,6 +163,9 @@
                 konamiCodeIndex = 0; // Réinitialise l'index si une touche incorrecte est pressée
             }
         }
+         
+        document.addEventListener('keydown', handleKonamiCode);
+        
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
