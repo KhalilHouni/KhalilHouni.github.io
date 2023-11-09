@@ -168,6 +168,24 @@ function handleKonamiCode(event) {
 
 document.addEventListener('keydown', handleKonamiCode);
 
+const butodenCode = [ 'x', 'a', 'b'];
+let butodenCodeIndex = 0;
+const secretSound2 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret2.wav'); 
+
+function handleButodenCode(event) {
+    const key = event.key.toLowerCase(); 
+    if (key === butodenCode[butodenCodeIndex]) {
+        butodenCodeIndex++;
+        if (butodenCodeIndex === butodenCode.length) {
+            secretSound2.play();
+            alert('Bravo');
+            butodenCodeIndex = 0;
+        }
+    } else {
+        butodenCodeIndex = 0; 
+    }
+}
+document.addEventListener('keydown', handleButodenCode);
 
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
