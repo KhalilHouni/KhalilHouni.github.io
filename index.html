@@ -187,6 +187,27 @@ function handleButodenCode(event) {
 }
 document.addEventListener('keydown', handleButodenCode);
 
+const barralCode = ['b', 'a', 'r', 'r', 'a', 'l'];
+let barralCodeIndex = 0;
+const secretSound3 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret3.wav');
+
+function handleBarralCode(event) {
+    const key = event.key.toLowerCase(); 
+    if (key === barralCode[barralCodeIndex]) {
+        barralCodeIndex++;
+        if (barralCodeIndex === barralCode.length) {
+            secretSound3.play();
+            alert('Bravo pour le code BARRAL !');
+            barralCodeIndex = 0;
+        }
+    } else {
+        barralCodeIndex = 0; 
+    }
+}
+
+document.addEventListener('keydown', handleBarralCode);
+
+
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
