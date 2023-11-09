@@ -148,24 +148,26 @@
     </div>
 
     <script>
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'a', 'b'];
 let konamiCodeIndex = 0;
+const secretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
 
 function handleKonamiCode(event) {
     const key = event.key;
     if (key === konamiCode[konamiCodeIndex]) {
         konamiCodeIndex++;
         if (konamiCodeIndex === konamiCode.length) {
-            alert('Secret found ! How did you know it would even work !?');
-            konamiCodeIndex = 0; // Réinitialise l'index pour la prochaine séquence
+            secretSound.play(); 
+            alert('Secret Found! How did you know  it would even work ?!');
+            konamiCodeIndex = 0; 
         }
     } else {
-        konamiCodeIndex = 0; // Réinitialise l'index si une touche incorrecte est pressée
+        konamiCodeIndex = 0; 
     }
 }
 
-// Écoutez les événements de touche pour détecter le code Konami
 document.addEventListener('keydown', handleKonamiCode);
+
 
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
