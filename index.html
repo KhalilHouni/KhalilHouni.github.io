@@ -148,24 +148,44 @@
     </div>
 
     <script>
-       const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+   const konamiCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
 let konamiCodeIndex = 0;
-const secretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
 
-function handleKonamiCode(event) {
+const butodenCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
+let butodenCodeIndex = 0;
+
+const konamiSecretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav');
+const butodenSecretSound = new Audio('URL_DU_SON_POUR_LE_BUTODEN_CODE');
+
+function handleSecretCode(event, secretCode, secretCodeIndex, secretSound) {
     const key = event.key;
-    if (key === konamiCode[konamiCodeIndex]) {
-        konamiCodeIndex++;
-        if (konamiCodeIndex === konamiCode.length) {
-            secretSound.play(); 
-            alert('Secret Found ! Why did you think it would work ?');
-            konamiCodeIndex = 0; 
+    if (key === secretCode[secretCodeIndex]) {
+        secretCodeIndex++;
+        if (secretCodeIndex === secretCode.length) {
+            secretSound.play();
+            if (secretCode === konamiCode) {
+                alert('Konami Code Found!');
+            } else if (secretCode === butodenCode) {
+                alert('Butoden Code Found! Bravo!');
+            }
+            secretCodeIndex = 0;
         }
     } else {
-        konamiCodeIndex = 0; 
+        secretCodeIndex = 0;
     }
+    return secretCodeIndex;
 }
+
+function handleKonamiCode(event) {
+    konamiCodeIndex = handleSecretCode(event, konamiCode, konamiCodeIndex, konamiSecretSound);
+}
+
+function handleButodenCode(event) {
+    butodenCodeIndex = handleSecretCode(event, butodenCode, butodenCodeIndex, butodenSecretSound);
+}
+
 document.addEventListener('keydown', handleKonamiCode);
+document.addEventListener('keydown', handleButodenCode);
 
 
 
