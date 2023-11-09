@@ -169,17 +169,17 @@ function handleKonamiCode(event) {
 
 document.addEventListener('keydown', handleKonamiCode);
 
- const butodenCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
+const butodenCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
 let butodenCodeIndex = 0;
-const secretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
+const secretSound = new Audio('chemin/vers/votre/secret.wav'); 
 
-function handlebutodenCode(event) {
-    const key = event.key;
+function handleButodenCode(event) {
+    const key = event.key.toLowerCase(); 
     if (key === butodenCode[butodenCodeIndex]) {
         butodenCodeIndex++;
         if (butodenCodeIndex === butodenCode.length) {
             secretSound.play(); 
-            alert('Secret Found ! Why did you think it would work ?');
+            alert('Bravo');
             butodenCodeIndex = 0; 
         }
     } else {
@@ -188,7 +188,8 @@ function handlebutodenCode(event) {
 }
 
 
-document.addEventListener('keydown', handlebutodenCode);
+document.addEventListener('keydown', handleButodenCode);
+
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
