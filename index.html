@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcaome to my website!</title>
+    <title>Welcome to my website!</title>
         <style>
         body {
             margin: 0;
@@ -148,48 +148,25 @@
     </div>
 
     <script>
-   const konamiCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiCodeIndex = 0;
 
-const butodenCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
-let butodenCodeIndex = 0;
-
-const konamiSecretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav');
-
-
-function handleSecretCode(event, secretCode, secretCodeIndex, secretSound) {
+function handleKonamiCode(event) {
     const key = event.key;
-    if (key === secretCode[secretCodeIndex]) {
-        secretCodeIndex++;
-        if (secretCodeIndex === secretCode.length) {
-            secretSound.play();
-            if (secretCode === konamiCode) {
-                alert('Konami Code Found!');
-            } else if (secretCode === butodenCode) {
-                alert('Butoden Code Found! Bravo!');
-            }
-            secretCodeIndex = 0;
+    if (key === konamiCode[konamiCodeIndex]) {
+        konamiCodeIndex++;
+        if (konamiCodeIndex === konamiCode.length) {
+            alert('Secret found ! How did you know it would even work !?');
+            konamiCodeIndex = 0; // Réinitialise l'index pour la prochaine séquence
         }
     } else {
-        secretCodeIndex = 0;
+        konamiCodeIndex = 0; // Réinitialise l'index si une touche incorrecte est pressée
     }
-    return secretCodeIndex;
 }
 
-function handleKonamiCode(event) {
-    konamiCodeIndex = handleSecretCode(event, konamiCode, konamiCodeIndex, konamiSecretSound);
-}
-
-function handleButodenCode(event) {
-    butodenCodeIndex = handleSecretCode(event, butodenCode, butodenCodeIndex, butodenSecretSound);
-}
-
+// Écoutez les événements de touche pour détecter le code Konami
 document.addEventListener('keydown', handleKonamiCode);
-document.addEventListener('keydown', handleButodenCode);
 
-
-
-        
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
