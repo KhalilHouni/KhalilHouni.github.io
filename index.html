@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to my website!</title>
+    <title>Welcoome to my website!</title>
         <style>
         body {
             margin: 0;
@@ -165,9 +165,28 @@ function handleKonamiCode(event) {
         konamiCodeIndex = 0; 
     }
 }
-
-
 document.addEventListener('keydown', handleKonamiCode);
+
+const butodenCode = ['ArrowUp', 'x', 'ArrowDown', 'b', 'ArrowLeft', 'y', 'ArrowRight', 'a'];
+let butodenCodeIndex = 0;
+const secretSound2 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
+
+function handleButodenCode(event) {
+    const key = event.key.toLowerCase(); 
+    if (key === butodenCode[butodenCodeIndex]) {
+        butodenCodeIndex++;
+        if (butodenCodeIndex === butodenCode.length) {
+            secretSound.play(); 
+            alert('Bravo');
+            butodenCodeIndex = 0;
+        }
+    } else {
+        butodenCodeIndex = 0; 
+    }
+}
+document.addEventListener('keydown', handleButodenCode);
+
+        
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
