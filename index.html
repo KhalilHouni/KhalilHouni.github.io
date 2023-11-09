@@ -148,24 +148,25 @@
     </div>
 
     <script>
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiCodeIndex = 0;
+      const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiCodeIndex = 0;
 
-        function handleKonamiCode(event) {
-            const key = event.key;
-            if (key.toLowerCase() === konamiCode[konamiCodeIndex]) {
-                konamiCodeIndex++;
-                if (konamiCodeIndex === konamiCode.length) {
-                    alert('Bravo');
-                    konamiCodeIndex = 0; // Réinitialise l'index pour la prochaine séquence
-                }
-            } else {
-                konamiCodeIndex = 0; // Réinitialise l'index si une touche incorrecte est pressée
-            }
+function handleKonamiCode(event) {
+    const key = event.key;
+    if (key === konamiCode[konamiCodeIndex]) {
+        konamiCodeIndex++;
+        if (konamiCodeIndex === konamiCode.length) {
+            alert('Bravo');
+            konamiCodeIndex = 0; 
         }
-         
-        document.addEventListener('keydown', handleKonamiCode);
-        
+    } else {
+        konamiCodeIndex = 0; 
+    }
+}
+
+
+document.addEventListener('keydown', handleKonamiCode);
+
         function toggleGameDetails(game) {
             const adventureDetails = document.getElementById('adventure-details');
             const shmupDetails = document.getElementById('shmup-details');
