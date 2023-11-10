@@ -2,7 +2,7 @@ const wheel = document.getElementById("wheel");
 const button = document.querySelector("button");
 
 const colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFD700", "#8B4513"];
-const phrases = ["Khalil", "Arthur", "Clara", "Leo", "Lucas", "Neïs", "Clara", "Mame","Maud","Adrien","Remy","Lena"];
+const words = ["Khalil", "Arthur", "Clara", "Lena", "Sabri", "Lucas", "Léo","Mame","Remy","Neïs","Adrien","Maud","Encadrant du jour"];
 
 let spinning = false;
 
