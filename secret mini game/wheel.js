@@ -24,7 +24,7 @@ function spinWheel() {
 
     // Wait for the animation to complete and show the alert
     setTimeout(() => {
-      alert(`Vous avez : ${selectedPhrase}`);
+      alert(`${selectedPhrase} va demarrer la cloture aujourd'hui`);
       wheel.style.transition = ""; // Remove transition for future spins
       wheel.style.transform = ""; // Reset the rotation
       spinning = false;
