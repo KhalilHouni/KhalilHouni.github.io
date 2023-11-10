@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
+            cursor: pointer;
         }
 
         nav {
@@ -105,12 +107,13 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <h1>Khalil Houni</h1>
         <p>En formation à Ada Tech School</p>
-        <img src="footer links/myprofilepic.jpg" alt="Votre Image de Profil">
+        <img src="footer links/myprofilepic.jpg" alt="Votre Image de Profil" id="profile-pic">
     </header>
 
     <nav>
@@ -136,5 +139,23 @@
         <p><a href="https://adatechschool.fr" target="_blank" style="color: #FFB6C1;">Ada Tech School</a></p>
     </footer>
 
+    <script>
+        let clickCount = 0;
+        const maxClicks = 3;
+        const secretWheelPath = "secret mini game/wheel.html";
+
+        function handleProfileClick() {
+            clickCount++;
+
+            if (clickCount === maxClicks) {
+                console.log("Redirecting to secret wheel...");
+                window.location.href = secretWheelPath;
+            }
+        }
+
+        const profilePic = document.getElementById('profile-pic');
+        profilePic.addEventListener('click', handleProfileClick);
+    </script>
 </body>
+
 </html>
