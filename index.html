@@ -85,6 +85,24 @@
             height: 30px;
             margin: 0 10px;
         }
+
+        /* Styles spécifiques pour les écrans plus petits */
+        @media screen and (max-width: 768px) {
+            header img {
+                top: 10px;
+                right: 10px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .content p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
     </style>
 </head>
 <body>
@@ -105,9 +123,8 @@
     <div class="content">
         <h2>Hello there !</h2>
         <p>Bonjour et bienvenue sur ma page personnelle. Ici, vous pouvez explorer plusieurs de mes projets personnels réalisés au cours de ma formation à Ada Tech School.</p>
-    <br>
-    <p style="font-style: italic; margin-top: 10px;">Ce site est actuellement en construction. Certaines pages ou fonctionnalités peuvent ne pas fonctionner correctement ou sont susceptibles de changer. Merci pour votre compréhension.</p>
-</div>
+        <p style="font-style: italic; margin-top: 10px;">Ce site est actuellement en construction. Certaines pages ou fonctionnalités peuvent ne pas fonctionner correctement ou sont susceptibles de changer. Merci pour votre compréhension.</p>
+    </div>
 
     <footer>
         <p>&copy; 2023 Houni. Tous droits réservés.</p>
