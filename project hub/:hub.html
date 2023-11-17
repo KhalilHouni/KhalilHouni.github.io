@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page des Projets</title>
-  <link rel="stylesheet" href="hub.css"> 
+  <link rel="stylesheet" href="hub.css">
 </head>
 <body>
   <!-- Fond sous-marin -->
@@ -53,11 +53,6 @@
       bubble.className = 'project';
       bubble.style.left = position.x + 'px';
       bubble.style.top = position.y + 'px';
-      bubble.onclick = function() {
-        if (!isDragging) {
-          window.location.href = link;
-        }
-      };
 
       var linkElement = document.createElement('a');
       linkElement.href = link;
@@ -92,12 +87,32 @@
         isDragging = false;
       });
 
+      bubble.addEventListener('touchstart', function (e) {
+        var touch = e.touches[0];
+        isDragging = true;
+        offsetX = touch.clientX - parseFloat(bubble.style.left);
+        offsetY = touch.clientY - parseFloat(bubble.style.top);
+      });
+
+      document.addEventListener('touchmove', function (e) {
+        if (!isDragging) return;
+        var touch = e.touches[0];
+        var x = touch.clientX - offsetX;
+        var y = touch.clientY - offsetY;
+        bubble.style.left = x + 'px';
+        bubble.style.top = y + 'px';
+      });
+
+      document.addEventListener('touchend', function () {
+        isDragging = false;
+      });
+
       bubble.addEventListener('dragstart', function () {
         return false;
       });
     }
 
-    // Ajoute des projets
+    // Ajoutez des projets
     createProjectBubble('Projet 1', 'projet1.html', []);
     createProjectBubble('Projet 2', 'projet2.html', []);
     createProjectBubble('Projet 3', 'projet3.html', []);
@@ -108,3 +123,4 @@
   </script>
 </body>
 </html>
+
