@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page des Projets</title>
+  <link rel="stylesheet" href="hub.css"> 
+</head>
+<body>
+  <!-- Fond sous-marin -->
+  <img class="underwater" src="https://source.unsplash.com/1920x1080/?underwater" alt="Underwater Background">
+
+  <!-- Bulles représentant les projets -->
+  <div class="bubble-container" id="bubbleContainer"></div>
+
+  <script>
+    function getRandomPosition(existingBubbles, containerRect) {
+      var maxAttempts = 50;
+      var attempt = 0;
+
+      while (attempt < maxAttempts) {
+        var randomX = Math.floor(Math.random() * (containerRect.width - 150)); // Ajustez la largeur de la bulle
+        var randomY = Math.floor(Math.random() * (containerRect.height - 150)); // Ajustez la hauteur de la bulle
+
+        // Vérifier si la nouvelle bulle entre en collision avec une bulle existante
+        var collision = false;
+        for (var i = 0; i < existingBubbles.length; i++) {
+          var existingBubble = existingBubbles[i];
+          var distance = Math.sqrt(Math.pow(randomX - existingBubble.x, 2) + Math.pow(randomY - existingBubble.y, 2));
+          if (distance < 150) { // Ajustez la distance pour empêcher les chevauchements
+            collision = true;
+            break;
+          }
+        }
+
+        if (!collision) {
+          return { x: randomX, y: randomY };
+        }
+
+        attempt++;
+      }
+
+      // Si on n'arrive pas à trouver une position après plusieurs tentatives, renvoyer une position par défaut
+      return { x: 50, y: 50 };
+    }
+
+    function createProjectBubble(projectName, link, existingBubbles) {
+      var container = document.getElementById('bubbleContainer');
+      var containerRect = container.getBoundingClientRect();
+      var position = getRandomPosition(existingBubbles, containerRect);
+
+      var bubble = document.createElement('div');
+      bubble.className = 'project';
+      bubble.style.left = position.x + 'px';
+      bubble.style.top = position.y + 'px';
+      bubble.onclick = function() {
+        if (!isDragging) {
+          window.location.href = link;
+        }
+      };
+
+      var linkElement = document.createElement('a');
+      linkElement.href = link;
+      linkElement.textContent = projectName;
+
+      bubble.appendChild(linkElement);
+      container.appendChild(bubble);
+
+      existingBubbles.push({ x: position.x, y: position.y, element: bubble });
+      makeDraggable(bubble, existingBubbles);
+    }
+
+    // Fonction pour rendre une bulle draggable
+    function makeDraggable(bubble, existingBubbles) {
+      var offsetX, offsetY, isDragging = false;
+
+      bubble.addEventListener('mousedown', function (e) {
+        isDragging = true;
+        offsetX = e.clientX - parseFloat(bubble.style.left);
+        offsetY = e.clientY - parseFloat(bubble.style.top);
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isDragging) return;
+        var x = e.clientX - offsetX;
+        var y = e.clientY - offsetY;
+        bubble.style.left = x + 'px';
+        bubble.style.top = y + 'px';
+      });
+
+      document.addEventListener('mouseup', function () {
+        isDragging = false;
+      });
+
+      bubble.addEventListener('dragstart', function () {
+        return false;
+      });
+    }
+
+    // Ajoute des projets
+    createProjectBubble('Projet 1', 'projet1.html', []);
+    createProjectBubble('Projet 2', 'projet2.html', []);
+    createProjectBubble('Projet 3', 'projet3.html', []);
+    createProjectBubble('Projet 4', 'projet4.html', []);
+    createProjectBubble('Projet 5', 'projet5.html', []);
+    createProjectBubble('Projet 6', 'projet6.html', []);
+    // Ajoutez d'autres projets de la même manière
+  </script>
+</body>
+</html>
