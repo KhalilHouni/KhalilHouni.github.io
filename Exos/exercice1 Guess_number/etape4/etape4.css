@@ -1,0 +1,70 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://media.tenor.com/MNVxgsGfaUQAAAAd/in-space-national-space-day.gif');
+    background-size: 110% auto; /* Ajuste la largeur à 110% pour étirer vers la droite */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'VT323', monospace;
+}
+
+.container {
+    text-align: center;
+    perspective: 120px; /* Effet de perspective */
+}
+    .small-gif-container {
+    position: fixed;
+    top: 10px; /* Ajuste la position verticale selon tes besoins */
+    right: 10px; /* Ajuste la position horizontale selon tes besoins */
+    width: 50px; /* Ajuste la largeur du GIF selon tes besoins */
+    height: auto; /* Permet au GIF de conserver ses proportions lors du redimensionnement */
+    z-index: 998; /* Un z-index légèrement inférieur pour que ce GIF soit derrière le premier GIF */
+}
+
+.header {
+    margin-bottom: 20px;
+    transform-style: preserve-3d;
+    animation: rotate 4s linear 1; /* Tourne sur lui-même en boucle */
+    text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white;
+}
+
+.sub-text {
+    font-size: 1.2em;
+    margin-top: -10px;
+    margin-right: 10px;
+    display: inline-block;
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+
+button {
+    margin-top: 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(720deg); /* 2 tours (2 * 360deg) */
+    }
+}
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villain Name Generator</title>
+</head>
+<body>
+    <h1>Villain Name Generator</h1>
+    <form id="villainForm">
+        <label for="birthdate">Enter your birthdate:</label>
+        <input type="date" id="birthdate" required>
+        <button type="button" onclick="generateVillainName()">Generate Villain Name</button>
+    </form>
+    <p>Your Villain Name is: <span id="villainName"></span></p>
+
+    <script>
+        function generateVillainName() {
+            const birthday = new Date(document.getElementById("birthdate").value);
+            const villainName = getVillainName(birthday);
+            document.getElementById("villainName").textContent = villainName;
+        }
+
+        function getVillainName(birthday) {
+            const months = [
+                "The Evil", "The Vile", "The Cruel", "The Trashy", "The Despicable", 
+                "The Embarrassing", "The Disreputable", "The Atrocious", 
+                "The Twirling", "The Orange", "The Terrifying", "The Awkward"
+            ];
+
+            const lastNames = [
+                "Mustache", "Pickle", "Hood Ornament", "Raisin", "Recycling Bin", 
+                "Potato", "Tomato", "House Cat", "Teaspoon", "Laundry Basket"
+            ];
+
+            const monthIndex = birthday.getMonth();
+            const day = birthday.getDate() % 10;
+
+            const firstName = months[monthIndex];
+            const lastName = lastNames[day];
+
+            return `${firstName} ${lastName}`;
+        }
+    </script>
+</body>
+</html>
