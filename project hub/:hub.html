@@ -92,6 +92,7 @@
         isDragging = true;
         offsetX = touch.clientX - parseFloat(bubble.style.left);
         offsetY = touch.clientY - parseFloat(bubble.style.top);
+        e.preventDefault(); // Empêche le défilement lors du glisser
       });
 
       document.addEventListener('touchmove', function (e) {
@@ -118,9 +119,10 @@
     createProjectBubble('Projet 3', 'projet3.html', []);
     createProjectBubble('Projet 4', 'projet4.html', []);
     createProjectBubble('Projet 5', 'projet5.html', []);
-    createProjectBubble('Projet 6', 'projet6.html', []);
+    createProjectBubble('Projet hi', 'projet6.html', []);
     // Ajoutez d'autres projets de la même manière
   </script>
 </body>
 </html>
+
 
