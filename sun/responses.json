@@ -1,0 +1,7 @@
+{
+  "responses": {
+    "hello": "Hello! I'm your Solar System Chatbot. Ask me anything about the solar system!",
+    "how are you": "I'm doing well, thank you for asking! Ready to explore the cosmos."
+    
+  }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Burger Icon -->
+    <div class="burger-icon" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="content">
+        <div class="circles">
+            <div class="mercury_circle"></div>
+            <div class="venus_circle"></div>
+            <div class="earth_circle"></div>
+            <div class="mars_circle"></div>
+            <div class="saturn_circle"></div>
+            <div class="jupiter_circle"></div>
+            <div class="uranus_circle"></div>
+            <div class="neptune_circle"></div>
+        </div>
+    
+        <div id="planets">
+            <div class="planet sun">
+            </div>
+            <div class="mercury_container">
+                    <div class="gif_mercury">
+                    </div>
+                    <div class="shadow_mercury">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="mercury_info">Mercure</div>
+    
+            </div>
+            <div class="venus_container">
+                    <div class="gif_venus">
+                    </div>
+                    <div class="shadow_venus">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="venus_info">Venus</div>
+            </div>
+            <div class="earth_moon_container">
+                <div class="earth_container">
+                       <div class="gif_earth">
+                        <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080036/earth_saibbo.gif">
+                    </div>
+                    <div class="shadow_earth">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="earth_info">Terre</div>
+                </div>
+                <div class="moon_container">
+                
+                       <div class="moon">
+                           <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080036/moon_nqqsgu.gif">
+                       </div>
+                   </div>
+                   
+            </div>
+            <div class="mars_container">
+                    <div class="gif_mars">
+                    </div>
+                    <div class="shadow_mars">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="mars_info">Mars</div>
+            </div>
+            <div class="jupiter_container">
+                    <div class="gif_jupiter">
+                        <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080036/jupiter_cxhuh5.gif">
+                    </div>
+                    <div class="shadow_jupiter">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="jupiter_info">Jupiter</div>
+            </div>
+            <div class="saturn_ring_container">
+                <div class="saturn_container">
+                    <div class="gif_saturn">
+                        <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080036/jupiter_cxhuh5.gif">
+                    </div>
+                    <div class="shadow_saturn">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="saturn_info">Saturn</div>
+                </div>
+                <div class="ring_container">
+                    <div class="gif_ring">
+                        <div>
+                            <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080037/ring_zofwhd.png">
+                        </div>
+                        <div>
+                            <img src="https://res.cloudinary.com/yerevan/image/upload/v1484080037/ring_zofwhd.png">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="uranus_container">
+                    <div class="gif_uranus">
+                    </div>
+                    <div class="shadow_uranus">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="uranus_info">Uranus</div>
+            </div>
+            <div class="neptune_container">
+                    <div class="gif_neptune">
+                    </div>
+                    <div class="shadow_neptune">
+                        <div class="light"></div>
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="neptune_info">Neptune</div>
+            </div>
+            
+        </div>
+    
+        <div class="controls">
+            <button id="stop">Stop</button>
+            <button id="start">Start</button>
+
+            <!-- Add arrow symbols and adjust the layout as needed -->
+            <span id="increase" onclick="adjustSlider(10)">&#9664;</span>
+            <input type="range" id="speedSlider" min="1" max="80" value="80" step="10">
+            <span id="decrease" onclick="adjustSlider(-10)">&#9654;</span>
+            <span id="sliderValue">80</span>
+
+            <p>Grab and move the mouse vertically to change perspective</p>
+
+            <!-- Planet selection dropdown -->
+            <label for="planetSelect">Select Planet:</label>
+            <select id="planetSelect" onchange="calculateRotation()">
+                <option value="mercury">Mercury</option>
+                <option value="earth">Earth</option>
+                <!-- Add options for other planets -->
+            </select>
+
+        </div>
+
+        <!-- Result display -->
+        <div id="result"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidenav">
+        <a href="#">Home</a>
+        <a href="#">Planets</a>
+        <a href="#">Gallery</a>
+        <a href="index alternate.html">Zen mode</a>
+        <!-- ... future links go here -->
+
+        <!-- Embed Music Player -->
+        <iframe src="Music/musicplayer.html" width="100%" height="300px" frameborder="0"></iframe>
+
+        <!-- ... future links go here -->
+        <a href="#" class="close" onclick="toggleSidebar()">&times;</a>
+    </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script>
+        
+		$(document).ready(function() {
+		  // Lorsque la souris survole Mercure
+		  $('.mercury_container').on('mouseenter', function() {
+			$('.mercury_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.mercury_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Vénus
+		  $('.venus_container').on('mouseenter', function() {
+			$('.venus_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.venus_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole la Terre
+		  $('.earth_moon_container').on('mouseenter', function() {
+			$('.earth_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.earth_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Mars
+		  $('.mars_container').on('mouseenter', function() {
+			$('.mars_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.mars_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Jupiter
+		  $('.jupiter_container').on('mouseenter', function() {
+			$('.jupiter_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.jupiter_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Saturne
+		  $('.saturn_ring_container').on('mouseenter', function() {
+			$('.saturn_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.saturn_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Uranus
+		  $('.uranus_container').on('mouseenter', function() {
+			$('.uranus_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.uranus_info').fadeOut();
+		  });
+	  
+		  // Lorsque la souris survole Neptune
+		  $('.neptune_container').on('mouseenter', function() {
+			$('.neptune_info').fadeIn();
+		  }).on('mouseleave', function() {
+			$('.neptune_info').fadeOut();
+		  });
+		});
+	  
+
+        function adjustSlider(change) {
+            var slider = document.getElementById('speedSlider');
+            var currentValue = parseInt(slider.value);
+
+            // Decrease or increase by 10 based on the button clicked
+            slider.value = currentValue + change;
+
+            // Update the slider value display
+            updateSliderValue();
+
+            // Recalculate rotation when slider changes
+            calculateRotation();
+        }
+
+        function updateSliderValue() {
+            var slider = document.getElementById('speedSlider');
+            var sliderValue = document.getElementById('sliderValue');
+            sliderValue.textContent = slider.value;
+        }
+
+        function calculateRotation() {
+            var planet = document.getElementById('planetSelect').value;
+            var n = parseInt(document.getElementById('speedSlider').value);
+
+            // Calculate rotation per minute based on the selected planet and n
+            var rotationPerMinute = calculateRotationPerMinute(planet, n);
+
+            // Display the result
+            document.getElementById('result').innerHTML = `Rotation per minute for ${planet.charAt(0).toUpperCase() + planet.slice(1)}: ${rotationPerMinute.toFixed(2)}`;
+        }
+
+
+        function calculateRotationPerMinute(planet, n) {
+            // Adjust the calculation based on the specific formula for each planet
+            // You can replace this with your actual rotation calculation for each planet
+            switch (planet) {
+                case 'mercury':
+                    return 360 * (3000 / 47.87) / n;
+                // Add cases for other planets
+            }
+            return 0;
+        }
+    </script>
+
+    <script src="scripter.js"></script>
+</body>
+</html>
