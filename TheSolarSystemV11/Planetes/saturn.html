@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modèle 3D de la Terre</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer"></script>
+  <link href="StylePresentation.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* La première colonne est deux fois plus large */
+      height: 100vh;
+    }
+
+    model-viewer {
+      width: 100%; /*  100% pour occuper tout l'espace disponible */
+      height: 100%;
+      aspect-ratio: 1.5; /* A ajuster selon le rapport hauteur/largeur de votre modèle */
+      position: relative; /* Position relative pour positionner la croix */
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 20px;
+      z-index: 1; /* On s'assure que  la croix est au-dessus du modèle 3D */
+    }
+
+    .info-container {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.2); /* Transparence ajoutée */
+      color: white; /* Couleur du texte ajustée */
+      border-radius: 10px;
+      margin: 20px; /* Ajustement de la marge */
+      overflow-y: auto; /* Ajout de la propriété overflow-y pour permettre le défilement vertical */
+      max-height: 80vh; /* Hauteur maximale pour afficher un effet de fondu mais est pas terrible*/
+    }
+
+    h2 {
+      margin-bottom: 10px; /* Marge ajoutée entre le titre et le paragraphe */
+    }
+
+    .return-link {
+      color: blue; /* Couleur du lien ajustée */
+      text-decoration: underline; /* Soulignement du lien */
+      cursor: pointer;
+      margin-left: 10px; /* Marge ajoutée entre la croix et le lien */
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    src="models/Saturn_1_120536.glb"
+    alt="Modèle 3D de Saturn"
+    camera-controls
+    auto-rotate
+  ></model-viewer>
+
+  <div class="close-button" onclick="goToIndex()">X</div>
+
+  <div class="info-container">
+    <h2 data-text="Saturne">Saturne</h2>
+    <ul class="white-text-with-blue-shadow">
+        <li>Elle est la deuxième plus grande par la taille et la masse après Jupiter, qui est comme elle une planète géante gazeuse.</li>
+        &nbsp;
+        <li>Son rayon moyen de 58 232 km est environ neuf fois et demi celui de la Terre.</li>
+        &nbsp;
+        <li>Sa masse est de 568,46 × 1024 kg.</li>   
+        &nbsp;
+        <li>Orbitant en moyenne à environ 1,4 milliard de kilomètres du Soleil (9,5 unités astronomiques).</li>
+        &nbsp;
+        <li> Sa période de révolution vaut un peu moins de 30 années terrestres tandis que sa période de rotation est estimée à 10 h 33 min.
+        </li>
+    </ul>
+  </div>
+  <div class="custom-audio-container">
+    <button class="custom-play-button" onclick="toggleAudio()">Play</button>
+    <audio id="myAudio" class="custom-audio">
+      <source src="sound/saturn sound.mp3" type="audio/mp3">
+    </audio>
+  </div>
+   <script>
+  // Fonction pour jouer ou mettre en pause le lecteur audio
+function toggleAudio() {
+  var audio = document.getElementById('myAudio');
+  var playButton = document.querySelector('.custom-play-button');
+  if (audio.paused) {
+    audio.play();
+    playButton.textContent = 'Pause'; // Change le texte du bouton en "Pause"
+  } else {
+    audio.pause();
+    playButton.textContent = 'Ecouter le son de la planète'; // Change le texte du bouton en "Play"
+  }
+}
+   </script>
+  <script>
+    function goToIndex() {
+      window.location.href = '../index.html';
+    }
+  </script>
+</body>
+</html>

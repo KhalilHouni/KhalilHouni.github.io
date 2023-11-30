@@ -1,0 +1,12 @@
+body {
+    background-color: #f8f5f5; /* Fond noir pour représenter l'espace. */
+    color: #fff; /* Texte en blanc pour contraster. */
+    font-family: 'Arial', sans-serif; /* Police de caractères. */
+    margin: 0; /* Supprimer la marge par défaut du corps. */
+}
+
+.header {
+    text-align: center; /* Centrer le texte. */
+    padding: 20px 0;
+}
+
