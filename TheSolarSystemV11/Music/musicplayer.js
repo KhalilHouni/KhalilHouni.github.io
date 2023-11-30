@@ -12,7 +12,7 @@ const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
 
 // Song titles
-const songs = ['Space Music','Jul'];
+const songs = ['Space Music','Uncharted Worlds','Map Theme'];
 
 // Keep track of song
 let songIndex = 0;
