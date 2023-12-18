@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khalil Houni - Page d'accueil</title>
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; 
+    color: #333;
+    position: relative;
+}
+
+header {
+    background-image: url('header.png');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+header p {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 20px;
+}
+
+.scroll-button {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    bottom: 314px;
+    left: -70px;
+    padding: 5px 26px;
+    background: linear-gradient(to right, #3bb78f, #3bb7cc); /* Gradient teal button */
+    border: 1px solid #3bb78f;
+    border-radius: 5px;
+    transform: translateY(-50%) rotate(-90deg);
+    z-index: 2;
+}
+
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+    margin: auto;
+}
+
+.slider {
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+
+.scroll-arrow-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.scroll-arrow {
+    font-size: 32px;
+    color: #555;
+    cursor: pointer;
+}
+
+.scroll-left {
+    transform: rotate(180deg);
+}
+
+.scroll-right {
+    transform: rotate(0deg);
+}
+
+.scroll-arrow:hover {
+    color: #3bb78f;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+.content-text {
+    padding: 20px;
+    background: linear-gradient(to right, #8ed2ff, #00c6ff); /* Gradient blue to cyan */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 0 20px;
+}
+
+.content h2 {
+    font-size: 36px;
+    color: #0073ff; /* Blue text */
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    header img {
+        top: 10px;
+        right: 10px;
+    }
+
+    .content h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .content p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .scroll-button {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    bottom: 294px;
+    left: -50px;
+    padding: 5px 10px;
+    background: linear-gradient(to right, #3bb78f, #3bb7cc); /* Gradient teal button */
+    border: 1px solid #3bb78f;
+    border-radius: 5px;
+    transform: translateY(-50%) rotate(-90deg);
+    z-index: 2;
+}
+}
+.card a {
+        text-decoration: none;
+        color: inherit;
+        
+    }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Khalil Houni</h1>
+        <p>En formation à Ada Tech School</p>
+        <img src="footer links/myprofilepic.jpg" alt="Votre Image de Profil" id="profile-pic">
+        <link rel="stylesheet" href="/carousel/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Fontawesome Link for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <script src="/carousel/scripte.js" defer></script>
+    </header>
+
+    <nav>
+        <a href="Pico8.html">Pico-8 Games</a>
+        <a href="TheSolarSystemV11/Page de garde.html">The Solar System</a>
+        <a href="project hub/:hub.html">Exercices pratiques</a>
+        <a href="secret mini game/Cloture.html">Wheel of Cloture</a>
+    </nav>
+
+    <div class="content slider-container">
+        <div class="scroll-button" onclick="scrollContent(-1)"> Infos utiles</div>
+        <div class="slider">
+            <!-- Contenu du slider -->
+            <div class="slide">
+                <div class="content-text">
+                    <h2>Hello there !</h2>
+                    <p>Bonjour et bienvenue sur ma page personnelle. Explorez mes projets personnels réalisés à Ada Tech School.</p>
+                    <p style="font-style: italic; margin-top: 10px;">Site en construction. Certaines fonctionnalités peuvent ne pas fonctionner correctement. Merci pour votre compréhension.</p>
+                
+                
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content-text">
+                    <h2>Slide 2</h2>
+                    <p>This is supposed to be the second slide </p>
+                    <p style="font-style: italic; margin-top: 10px;">Does italic work for the second slide?</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content-text">
+                    <h2>Slide 3</h2>
+                    <p>This is supposed to be the third slide </p>
+                    <p style="font-style: italic; margin-top: 10px;">Does italic work for the third slide?</p>
+                </div>
+            </div>
+        </div>
+<!----
+        <div class="scroll-arrow-container">
+            <div class="scroll-arrow scroll-left" onclick="scrollContent(-1)">‹</div>
+            <div class="scroll-arrow scroll-right" onclick="scrollContent(1)">›</div>
+        </div>
+    -->
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Houni. Tous droits réservés.</p>
+        <div class="social-icons">
+            <a href="https://twitter.com/VotreCompteTwitter" target="_blank"><img src="footer links/twitter_logo.png" alt="Twitter"></a>
+            <a href="https://www.youtube.com/c/@khalilhouni" target="_blank"><img src="footer links/youtube_logo.webp" alt="YouTube"></a>
+            <a href="https://www.linkedin.com/in/khalil-houni-bb13832a5/" target="_blank"><img src="footer links/linkedin_logo.webp" alt="LinkedIn"></a>
+        </div>
+        <p><a href="https://adatechschool.fr" target="_blank" style="color: #FFB6C1;">Ada Tech School</a></p>
+    </footer>
+
+    <script>
+        let clickCount = 0;
+        const maxClicks = 3;
+        const secretWheatherApp = "Projet Dataviz copy/weather.html";
+        let allowScroll = true;
+    
+        function handleProfileClick() {
+            clickCount++;
+    
+            if (clickCount === maxClicks) {
+                console.log("Redirecting to secret wheel...");
+                window.location.href = secretWheatherApp;
+            }
+        }
+    
+        const profilePic = document.getElementById('profile-pic');
+        profilePic.addEventListener('click', handleProfileClick);
+    
+        function scrollContent(direction) {
+            if (!allowScroll) return;
+    
+            allowScroll = false;
+    
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const slideWidth = slides[0].clientWidth;
+    
+            if (direction === -1) {
+                slider.style.transform = `translateX(${slideWidth}px)`;
+                slider.appendChild(slides[0]);
+            } else {
+                slider.style.transform = `translateX(-${slideWidth}px)`;
+                slider.prepend(slides[slides.length - 1]);
+            }
+    
+            setTimeout(() => {
+                slider.style.transition = 'none';
+                slider.style.transform = 'translateX(0)';
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.5s ease-in-out';
+                    allowScroll = true;
+                });
+            }, 500);
+        }
+    </script>
+      <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/pico8thumbnail.png" alt="img" draggable="false"></div>
+            <h2>Pico-8</h2>
+            <span>2 jeux</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/solarsystemthumbnail.png" alt="img" draggable="false"></div>
+            <h2>Dataviz et API</h2>
+            <span>System Solaire</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/TBD project v1.jpg" alt="img" draggable="false"></div>
+            <h2>Extension Navigateur</h2>
+            <span>test</span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/TBD project v2.jpg" alt="img" draggable="false"></div>
+            <h2>Autre Projet</h2>
+            <span></span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/TBD project.jpg" alt="img" draggable="false"></div>
+            <h2>Autre Projet</h2>
+            <span></span>
+          </li>
+          <li class="card">
+            <div class="img"><img src="carousel/image carousel/TBD project v2.jpg" alt="img" draggable="false"></div>
+            <h2>Autre Projet</h2>
+            <span></span>
+          </li>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+      </div>
+</body>
+
+</html>
