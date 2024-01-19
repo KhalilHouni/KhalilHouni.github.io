@@ -157,7 +157,9 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 3; /* Set a higher z-index value */
 }
+
 
 .social-icons {
     margin-top: 10px;
@@ -209,6 +211,11 @@ footer {
         color: inherit;
         
     }
+        .wrapper {
+    position: relative;
+    z-index: 2; /* Set a lower z-index value than the footer */
+}   
+        
     </style>
 </head>
 
