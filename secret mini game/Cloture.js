@@ -1,15 +1,15 @@
 const wheel = document.getElementById("wheel");
 const pointer = document.getElementById("pointer");
 const spinButton = document.getElementById("spinButton");
-const voiceSwitch = document.getElementById("voiceSwitch");
+const voiceToggle = document.getElementById("voiceToggle");
 
 const words = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Lucas", "Mamé-Diara", "Neïsse", "Adrien", "Maud", "Encadrant(te) du jour"];
 
 let spinning = false;
-let speaking = true; // Initially set to true
+let speaking = false; // Initially set to false
 
 spinButton.addEventListener("click", spinWheel);
-voiceSwitch.addEventListener("change", toggleVoice);
+voiceToggle.addEventListener("click", toggleVoice);
 
 function speakResult(result) {
   if (speaking) {
@@ -24,7 +24,14 @@ function speakResult(result) {
 }
 
 function toggleVoice() {
-  speaking = voiceSwitch.checked;
+  speaking = !speaking;
+  const status = speaking ? "activée" : "désactivée";
+  alert(`La voix est ${status}`);
+  updateVoiceToggleStyle();
+}
+
+function updateVoiceToggleStyle() {
+  voiceToggle.classList.toggle("active", speaking);
 }
 
 function spinWheel() {

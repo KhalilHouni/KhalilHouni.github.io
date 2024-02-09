@@ -54,3 +54,13 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
+
+
+  #voiceToggle {
+    background-color: red;
+  }
+
+  #voiceToggle.active {
+    background-color: green;
+  }
+
