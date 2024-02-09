@@ -1,12 +1,31 @@
 const wheel = document.getElementById("wheel");
 const pointer = document.getElementById("pointer");
-const button = document.querySelector("button");
+const spinButton = document.getElementById("spinButton");
+const voiceSwitch = document.getElementById("voiceSwitch");
 
-const words = ["Khalil", "Arthur", "Clara", "Lena", "Sabri", "Lucas", "Léo", "Mame", "Remy", "Neïs", "Adrien", "Maud", "Encadrant du jour"];
+const words = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Lucas", "Mamé-Diara", "Neïsse", "Adrien", "Maud", "Encadrant(te) du jour"];
 
 let spinning = false;
+let speaking = true; // Initially set to true
 
-button.addEventListener("click", spinWheel);
+spinButton.addEventListener("click", spinWheel);
+voiceSwitch.addEventListener("change", toggleVoice);
+
+function speakResult(result) {
+  if (speaking) {
+    const speech = new SpeechSynthesisUtterance(result);
+    speech.lang = 'fr-FR';  // Specify the language
+
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+  }
+}
+
+function toggleVoice() {
+  speaking = voiceSwitch.checked;
+}
 
 function spinWheel() {
   if (!spinning) {
@@ -58,6 +77,9 @@ function spinWheel() {
       // Randomly select a word
       const randomWordIndex = Math.floor(Math.random() * words.length);
       const selectedWord = words[randomWordIndex];
+
+      // Speak the result
+      speakResult(`${selectedWord} va démarrer la cloture aujourd'hui, ${selectedWord}`);
 
       // Show the selected word in an alert
       alert(`${selectedWord} va démarrer la cloture aujourd'hui`);
