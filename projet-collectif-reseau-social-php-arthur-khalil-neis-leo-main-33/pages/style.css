@@ -1,0 +1,386 @@
+body {
+    background-color: rgb(220, 233, 245);
+    font-family: 'Catamaran', sans-serif;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body>header {
+   
+    display: flex;
+    width: 80em;
+    margin: 0 auto 2em auto;
+    padding: 0;
+    border-radius: 1em;
+}
+
+body>header img {
+    height: 5em;
+}
+
+body>header #menu {
+    display: flex;
+    width: 50%;
+    align-items: stretch;
+   
+    border-block-end: hidden;
+    border-top-left-radius: 2rem;
+    background-color: #b2d5e8;
+    border-radius: 2rem;
+}
+
+body>header #menu a {
+    flex: 1;
+    text-align: center;
+    padding-top: 2em;
+   
+}
+
+body>header a:hover {
+    background-color: #99b;
+}
+
+body>header ul {
+    list-style: none;
+}
+
+body>header #user {
+    margin-left: auto;
+    flex: 0.2;
+
+}
+
+body>header #user>a {
+    display: block;
+    text-align: center;
+    padding: 2em 0;
+    width: 100%;
+}
+
+body>header #user ul {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    margin-left: -5em;
+    background-color: #fff;
+   
+    z-index: 1;
+}
+
+body>header #user ul li a {
+    display: block;
+    width: 10em;
+    padding: 1em;
+   
+}
+
+body>header #user:hover ul {
+    display: block;
+}
+
+#user-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#user-info span {
+    margin-right: 10px;
+}
+
+#wrapper {
+    display: flex;
+    width: 80em;
+    margin: 0 auto 2em auto;
+
+}
+
+#wrapper aside {
+    background-color: #fff;
+    flex: 1;
+    padding: 1em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer horizontalement les éléments à l'intérieur de aside */
+    align-items: center; 
+    margin: auto;/* Centrer verticalement les éléments à l'intérieur de aside */
+}
+
+
+#wrapper aside img {
+
+    width: 50%;
+    border-radius: 0.5em;
+    margin: auto;
+}
+
+
+#wrapper main {
+    flex: 3;
+    padding-left: 1em;
+    height: 80vh;
+    overflow-y: scroll hidden;
+    border-radius: 1rem;
+}
+
+#wrapper main article {
+    background-color: #dfdfdf;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    border: 1px solid;
+}
+
+#wrapper main article h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+#wrapper main article time {
+    float: left;
+}
+
+#wrapper main article address {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+#wrapper main article p {
+    margin: 0;
+    border-radius: 2rem;
+}
+
+#wrapper main article footer {
+    margin-top: 1em;
+    text-align: right;
+}
+
+#wrapper main article footer small {
+    float: left;
+}
+
+#wrapper.admin {
+    flex-direction: row-reverse;
+    border-radius: 1rem;
+}
+
+#wrapper.admin aside {
+    flex: 1;
+    margin-left: 1em;
+    border-radius: 1rem;
+    padding: 0;
+}
+
+#wrapper.admin main {
+    flex: 2;
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 0;
+}
+
+#wrapper.admin h2 {
+    text-align: center;
+}
+
+#wrapper.admin h3 {
+    margin: 0;
+}
+
+#wrapper.admin nav {
+    text-align: right;
+}
+
+#wrapper.admin article {
+    border: 1px solid #ddd;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em;
+}
+
+#wrapper.admin article p {
+    float: left;
+    margin: 0;
+}
+
+.parameters dl dt {
+    float: left;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+.parameters dl dd {
+    margin-left: 15em;
+    line-height: 1.5em;
+}
+
+.contacts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.contacts article {
+    width: 25em;
+    height: 7em;
+    margin-right: 1em;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.contacts article img {
+    float: right;
+    height: 5em;
+    border-radius: 0.5em;
+}
+
+pre {
+    color: #aaa;
+}
+
+form dl dt {
+    float: left;
+    font-weight: bold;
+    line-height: 1.5em;
+}
+
+form dl dd {
+    margin-left: 10em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+}
+
+form dl dd textarea {
+    width: 40em;
+    height: 15em;
+    border-radius: 0.5em;
+}
+
+.like_button {
+    background: transparent;
+    border: none !important;
+    border-radius: 0.5em;
+}
+
+#follow-profile,
+#writemessage {
+    color: #4E7187;
+    background-color: transparent;
+    border-color: #4E7187;
+    display: inline-block;
+    padding: .8em 1em .6em 1em;
+    border-style: solid;
+    border-width: 2px;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .2s;
+    text-align: center;
+    margin: 15px auto;
+    min-width: 100%;
+    border-radius: 1.75em;
+
+}
+
+#follow-profile:hover, 
+#writemessage:hover {
+    background-color: rgba(0, 0, 0, .05);
+    border-color: transparent;
+}
+
+#follow-profile:active,
+#writemessage:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.5);
+    }
+
+#like_icone{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #4E7187;
+    min-width: 4%;
+    text-align: center;
+    border-radius: 2em;
+    background-color: #c5ced3;
+}
+
+#date_post{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #4E7187;
+    /* min-width: 100%; */
+    text-align: center;
+    border-radius: 2em; 
+    background-color: #b2d5e8;
+
+}
+
+    article {
+        transition: margin-right 0.5s ease; /* Ajustez la durée de l'animation selon vos besoins */
+    }
+
+    .reply {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    #nav_profil{
+        background-color: #b2d5e8;
+        border-radius: 2rem;
+    }
+
+    #name_link{
+        border-style: solid;
+        border-width: 1px;
+        border-color: #4E7187;
+        /* min-width: 100%; */
+        text-align: center;
+        color: white;
+        border-radius: 2em; 
+        background-color: #3f3c3c54;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    #delete_style{
+        border-radius: 2em;
+        border: 1px solid;
+        background-color: rgb(252, 176, 176);
+    }
+
+    #menu a {
+        text-decoration: none;
+        color: black; /* Ajoutez la couleur du texte selon vos besoins */
+        margin-right: 15px; /* Ajustez la marge à droite selon vos besoins */
+        margin-bottom: 10px; /* Ajustez la marge en bas pour séparer les liens texte */
+        padding: 10px; /* Ajout de rembourrage pour contrôler la hauteur des liens */
+        display: flex;
+        align-items: center;
+    }
+
+    #menu img {
+        border-radius: 50%;
+        width: 80px; /* Ajustez la taille selon vos besoins */
+        height: 80px; /* Ajustez la taille selon vos besoins */
+        margin-right: 10px; /* Marge à droite pour séparer l'image du texte */
+    }
+
+    #user ul li {
+        margin-bottom: 5px; /* Ajustez l'espacement entre les éléments de la liste selon vos besoins */
+    }
