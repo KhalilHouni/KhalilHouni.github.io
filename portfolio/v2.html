@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHalil Houni's Portfolio</title>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js"></script>
+    <style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #fffafa;
+    overflow-x: hidden;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#spline-viewer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+spline-viewer {
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    text-align: center;
+    padding: 50px 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ddd;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #fff;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 24px;
+    margin-left: 50px;
+    color: #ddd;
+}
+
+.openbtn {
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #555;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+}
+
+.project,
+    .container {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Augmente l'opacité de l'ombre */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s;
+    margin-right: 20px;
+    background-color: #333; /* Change la couleur de fond */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project img,
+.container img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    opacity: 0;
+    animation: fadeInImage 1s forwards;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Augmente l'opacité de l'ombre */
+}
+
+.project-text,
+.container-text {
+    padding: 100px;
+}
+
+@keyframes fadeInImage {
+    to {
+        opacity: 1;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    
+   
+
+    <header>
+        <h1>Khalil Houni</h1>
+        <p>Web Developer</p>
+        <p>En recherche d'alternance</p>
+    </header>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+
+    <section>
+        <div class="project">
+            <img src="/KhalilHouni.github.io-main/carousel/image carousel/pico8thumbnail.png" alt="Project 1">
+        </div>
+
+        <div class="project-text">
+            <h2>Pico-8 Games</h2>
+            <p>Here goes the description of the project. You can add any relevant information about this project here.</p>
+        </div>
+
+        <div class="container">
+            <img src="/KhalilHouni.github.io-main/carousel/image carousel/solarsystemthumbnail.png" alt="Container Image">
+        </div>
+
+        <div class="container-text">
+            <h2>Le System Solaire</h2>
+            <p>Here goes the description of the container project. You can add any relevant information about this project here.</p>
+        </div>
+
+        <div class="container">
+            <img src="/KhalilHouni.github.io-main/carousel/image carousel/TBD project v1.jpg" alt="Container Image">
+        </div>
+
+        <div class="container-text">
+            <h2>Extension Chrome HEY GPT !</h2>
+            <p>Here goes the description of the container project. You can add any relevant information about this project here.</p>
+        </div>
+
+        <div class="container">
+            <img src="/KhalilHouni.github.io-main/carousel/image carousel/TBD project v2.jpg" alt="Container Image">
+        </div>
+
+        <div class="container-text">
+            <h2>Réseau social PHP</h2>
+            <p>Here goes the description of the container project. You can add any relevant information about this project here.</p>
+        </div>
+
+        <div class="container">
+            <img src="/KhalilHouni.github.io-main/carousel/image carousel/TBD project v2.jpg" alt="Container Image">
+        </div>
+
+        <div class="container-text">
+            <h2>Platforme vente de meuble</h2>
+            <p>Here goes the description of the container project. You can add any relevant information about this project here.</p>
+        </div>
+    </section>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        // Add scroll event listener for fade-in effect on scroll
+        document.addEventListener("scroll", function () {
+            const projects = document.querySelectorAll(".project, .container");
+            projects.forEach((project) => {
+                const position = project.getBoundingClientRect().top;
+                const screenHeight = window.innerHeight;
+
+                if (position < screenHeight / 1.5) {
+                    project.style.opacity = 1;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

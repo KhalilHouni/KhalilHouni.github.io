@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KHalil Houni's Portfolio</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <style>
+      .github-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s; /* Added box-shadow transition */
+    position: relative;
+    z-index: 2;
+}
+
+.github-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #4234db, #2980b9);
+    border-radius: 5px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+}
+
+.github-button:hover::before {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+.github-button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Added box-shadow on hover */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- wave background -->
+    <div class='box'>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+      </div>
+
+      <header>
+        <h1>Khalil Houni</h1>
+        <p>Web Developer</p>
+        <p>En recherche d'alternance</p>
+        <a href="https://github.com/KhalilHouni" class="github-button" target="_blank">My GitHub</a>
+
+    </header>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+
+    <section>
+      <!-- Example for the first project -->
+      <div class="container">
+        <p></p>
+        <img src="/KhalilHouni.github.io-main/carousel/image carousel/pico8thumbnail.png" alt="Container Image">
+        <div class="container-text">
+            <h2>Pico-8 Games</h2>
+            <p>PICO-8 is an 8bit style game maker where you can code your very own Games. check out mines !</p>
+            <div class="button-container">
+                <a href="../Pico8.html" target="_blank">Check the Games</a>
+            </div>
+        </div>
+    </div>
+
+
+<div class="container">
+    <p></p>
+    <img src="/KhalilHouni.github.io-main/carousel/image carousel/solarsystemthumbnail.png" alt="Container Image">
+    <div class="container-text">
+        <h2>The Solar System</h2>
+        <p>Explore our very own Solar system ! interactive and complete with a chatbot. Check out where the  whereabout of the ISS station  and more ! </p>
+        <div class="button-container">
+            <a href="../TheSolarSystemV11/Page de garde.html" target="_blank">Check Website</a>
+            <a href="https://github.com/KhalilHouni/projet-Visualisation-Du-System-Solaire" target="_blank">Check GitHub Repo</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p></p>
+    <img src="/KhalilHouni.github.io-main/carousel/image carousel/HeyGPT.png" alt="Container Image">
+    <div class="container-text">
+        <h2>Extension Chrome Hey GPT !</h2>
+        <p>Ever wish you could talk to Chatgpt on your browser ? Now you can ! (you need your own api key)</p>
+        <div class="button-container">
+            <a href="https://github.com/KhalilHouni/projet-Extension-Chrome-HeyGPT" target="_blank">Check GitHub Repo</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p></p>
+    <img src="/KhalilHouni.github.io-main/carousel/image carousel/TBD project v2.jpg" alt="Container Image">
+    <div class="container-text">
+        <h2>Réseau social PHP</h2>
+        <p>What better way to learn PHP and SQL ? By making our very own social network. Altough simple, a great learning experience !</p>
+        <div class="button-container">
+            <a href="https://github.com/KhalilHouni/projet-reseau-social-php" target="_blank">Check GitHub Repo</a>
+        </div>
+    </div>
+</div>
+
+     <div class="container">
+        <p></p>
+    <img src="/KhalilHouni.github.io-main/carousel/image carousel/LogoAmpunv 2.png" alt="Container Image">
+    <div class="container-text">
+        <h2>Platforme vente de meuble d'occasion</h2>
+        <p> This project is still a work in progress. Come back later !</p>
+        <div class="button-container">
+            <a href=# target="_blank" >Work in progress...</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p></p>
+    <p></p>
+<img src="">
+    <h2>More to come !</h2>
+    <p></p>
+    <p>There is always more to do and learn !</p>
+    
+      
+    </div>
+</div>
+</div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        // Add scroll event listener for fade-in effect on scroll
+        document.addEventListener("scroll", function () {
+            const projects = document.querySelectorAll(".project, .container");
+            projects.forEach((project) => {
+                const position = project.getBoundingClientRect().top;
+                const screenHeight = window.innerHeight;
+
+                if (position < screenHeight / 1.5) {
+                    project.style.opacity = 1;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
