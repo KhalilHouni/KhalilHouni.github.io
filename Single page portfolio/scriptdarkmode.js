@@ -1,31 +1,29 @@
-// Function to toggle dark mode
-function toggleDarkMode() {
-    // Toggle dark mode by changing CSS variables
-    document.documentElement.classList.toggle('dark-mode');
+// Function to check current time and toggle dark mode accordingly
+function autoToggleDarkMode() {
+  const franceTime = new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'});
+  //console.log("Current time in France:", franceTime);
+
+  const currentHour = new Date(franceTime).getHours();
+
+  // Set the start and end hours for dark mode (e.g., 8 PM to 6 AM)
+  const startHour = 18;
+  const endHour = 6;
+
+  // Check if the current hour is within the dark mode range
+  const isDarkMode = currentHour >= startHour || currentHour < endHour;
+
+  // Toggle dark mode based on the time of day
+  if (isDarkMode) {
+    document.documentElement.classList.add('dark-mode');
+  } else {
+    document.documentElement.classList.remove('dark-mode');
   }
+}
 
-  // Function to check current time and toggle dark mode accordingly
-  function autoToggleDarkMode() {
-    const currentHour = new Date().getHours();
-    // Set the start and end hours for dark mode (e.g., 8 PM to 6 AM)
-    const startHour = 20;
-    const endHour = 6;
-
-    // Check if the current hour is within the dark mode range
-    const isDarkMode = currentHour >= startHour || currentHour < endHour;
-
-    // Toggle dark mode based on the time of day
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark-mode');
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-    }
-  }
-
-  // Add event listener to call autoToggleDarkMode on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    autoToggleDarkMode();
-  });
+// Add event listener to call autoToggleDarkMode on page load
+document.addEventListener('DOMContentLoaded', function() {
+  autoToggleDarkMode();
+});
 
 
    // JavaScript for toggling dark mode and updating SVG colors
