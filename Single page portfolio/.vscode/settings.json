@@ -1,0 +1,6 @@
+{
+    "workbench.colorTheme": "Mono Atom",
+    "workbench.preferredDarkColorTheme": "Default Dark Modern",
+    "editor.semanticHighlighting.enabled": "configuredByTheme",
+    "editor.semanticTokenColorCustomizations": {}
+}

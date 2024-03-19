@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fond Spatial</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .star {
+      position: absolute;
+      background: #fff;
+      width: 1px;
+      height: 1px;
+      animation: twinkle 2s infinite ease-in-out; /* Ralentir la vitesse des étoiles */
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1; /* Assure que le texte apparaît au-dessus des étoiles */
+      text-align: center;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    .container h1 {
+      font-size: 2.5em;
+      margin-bottom: 90px;
+      text-transform: uppercase;
+      position: relative;
+      color: transparent;
+      letter-spacing: 4px; /* Espacement entre les lettres */
+      text-align: center; /* Centrer le contenu horizontalement */
+    }
+
+    .container h1::after {
+      content: 'Projet dataviz et API:';
+      position: absolute;
+      text-align: center; /* Centrer le contenu horizontalement */
+      top: 0;
+      left: 0;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00f, 0 0 70px #00f, 0 0 80px #00f, 0 0 100px #00f, 0 0 150px #00f;
+      animation: shine 3s infinite linear;
+    }
+
+    @keyframes shine {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+
+    .container h2 {
+      font-size: 2em;
+      margin-top: 30px; /* Espacement depuis le paragraphe précédent */
+      margin-bottom: 15px;
+      color: #fff;
+      border-bottom: 2px solid #fff; /* Bordure inférieure pour séparer le titre du contenu suivant */
+    }
+
+    .container ul {
+      /* Styles précédents pour la liste */
+      /* ... */
+      margin-top: 10px;
+      list-style-type: none; /* Espacement depuis le titre précédent */
+    }
+
+    .container ul li {
+      /* Styles précédents pour les éléments de la liste */
+      /* ... */
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="stars-container"></div> <!-- Conteneur pour les étoiles -->
+
+  <div class="container">
+    <h1>Projet dataviz et API:</h1>
+    <p>Ce projet a été conçu par Khalil, Lucas et Maud lors d'une semaine projet à l'Ada Tech School (promo Elisabeth Feinler). Nous y avons mit toute notre énergie et travailler en équipe afin de donner le résultat reflétant le mieux notre état d'esprit et nos capacités.</p>
+    <h2>Contact</h2>
+    <ul>
+      <li>Khalil : khalil.houni@gmail.com</li>
+      <li>Lucas : lucasfeld42@gmail.com</li>
+      <li>Maud : maud.hue66@gmail.com</li>
+    </ul>
+  </div>
+  </div>
+
+  <script>
+    const numberOfStars = 100;
+    const starsContainer = document.getElementById('stars-container');
+
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = `${Math.random() * 100}vh`;
+      star.style.left = `${Math.random() * 100}vw`;
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Clippy bot</title>
+    <link rel="stylesheet" type="text/css" href="chatbotimplementedindex.css">
+</head>
+<body>
+    <div class="chatbox">
+        <div id="chat-container"></div>
+        <div id="user-input-container">
+            <input type="text" id="user-input" placeholder="Ask me anything, say hi!" onkeyup="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script src="chatbotnewVer.js"></script>
+
+    <script>
+        // Function to handle "Enter" key press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>

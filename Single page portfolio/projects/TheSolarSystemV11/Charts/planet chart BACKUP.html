@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Near-Earth Asteroids Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        #loadingContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    
+        #loadingMessage {
+            font-size: 18px;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+    
+        #hourglass {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: rotate 1s infinite linear;
+            margin-top: 10px;
+        }
+    
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="loadingContainer">
+        <div id="loadingMessage">Now loading, please wait...</div>
+        <div id="hourglass"></div>
+    </div>
+    <canvas id="asteroidChart" width="800" height="400"></canvas>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = "Xs0EXbcbpgxB2ueRsAhnweYs96hPNrueTOXNzzYp";
+
+            // Display loading container
+            const loadingContainer = document.getElementById('loadingContainer');
+            loadingContainer.style.display = 'flex';
+
+            // Fetch asteroid data
+            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2023-12-01&end_date=2023-12-08&api_key=${apiKey}`)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const nearEarthObjects = JSON.parse(data.contents).near_earth_objects;
+
+                    // Extract data for the chart
+                    const chartData = [];
+                    for (const date in nearEarthObjects) {
+                        nearEarthObjects[date].forEach(asteroid => {
+                            const distance = parseFloat(asteroid.close_approach_data[0].miss_distance.kilometers);
+                            const diameter = parseFloat(asteroid.estimated_diameter.meters.estimated_diameter_max);
+                            const name = asteroid.name;
+                            const velocity = parseFloat(asteroid.close_approach_data[0].relative_velocity.kilometers_per_second);
+                            const isPotentiallyHazardous = asteroid.is_potentially_hazardous_asteroid;
+
+                            chartData.push({ name, date, distance, diameter, velocity, isPotentiallyHazardous });
+                        });
+                    }
+
+                    // Sort chart data by distance for better visualization
+                    chartData.sort((a, b) => a.distance - b.distance);
+
+                    // Hide loading container
+                    loadingContainer.style.display = 'none';
+
+                    // Extract labels and data for the chart
+                    const labels = chartData.map(entry => entry.name);
+                    const distances = chartData.map(entry => entry.distance);
+                    const diameters = chartData.map(entry => entry.diameter);
+
+                    // Create a chart
+                    const ctx = document.getElementById('asteroidChart').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Distance from Earth (km)',
+                                    data: distances,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Diameter (meters)',
+                                    data: diameters,
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            },
+                            animation: {
+                                duration: 2000, // 2 seconds animation
+                                easing: 'easeInOutQuart'
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error("Error fetching asteroid data:", error));
+        });
+    </script>
+</body>
+</html>

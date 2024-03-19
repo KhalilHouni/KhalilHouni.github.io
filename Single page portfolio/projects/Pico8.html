@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to my website!</title>
+        <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .game-container {
+            display: flex;
+        }
+
+        .game-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .game-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-details {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 20px;
+        }
+
+        .game-description {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .play-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .game-container.opened .game-button {
+            width: 400px;
+            height: 400px;
+        }
+
+        .game-container.opened .game-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+@media screen and (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-button,
+    .game-details {
+        width: 80%;
+        margin: 10px 0;
+    }
+
+    .game-container.opened .game-button,
+    .game-container.opened .game-details {
+        width: 100%;
+    }
+}
+    </style>
+ 
+</head>
+
+<body>
+    <h1>Choose a Pico-8 Game</h1>
+
+    <div class="game-container">
+        <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')">
+            <img src="https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/pikokingdom1.jpg" alt="Pico Kingdom">
+        </div>
+        <div id="adventure-details" class="game-details">
+  <div class="game-description">
+                <strong>Piko Kingdom:
+                <br> </strong>In a realm consumed by darkness, 
+               <br> you, a courageous knight, embark on a perilous quest. 
+               <br> Piko Kingdom suffers beneath malevolent sprouts, draining life from the land.
+              <br>  Armed with sword and shield, your mission is clear: vanquish these vile creatures, 
+                <br>restore balance, and illuminate the path to a new dawn.
+            </div>
+
+            <div class="play-button" onclick="launchGame('pikokingdom.html')">Press to Play</div>
+        </div>
+
+        <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')">
+            <img src="https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/coolspace.jpg" alt="Cool Space">
+        </div>
+        <div id="shmup-details" class="game-details">
+<div class="game-description">
+                <strong>Cool Space:
+            <br>    </strong>Across the cosmos, 
+              <br>  a menacing horde of insectoid aliens descends upon Earth, 
+               <br> craving its life force. Humanity's last hope rests in your hands. 
+               <br> Pilot advanced spacecraft, face the alien swarm, and navigate through hordes of enemies.
+               <br>  With each foe defeated, Earth's chance of survival brightens. 
+                <br>Brace yourself for the ultimate battle; the fate of our world hangs in the balance.
+                <br>Bonus: In the pause menu, you can enable experimental 3D mode (beta) !
+             </div>
+
+        
+            <div class="play-button" onclick="launchGame('shmupfinal.html')">Press to Play</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Made by Khalil Houni
+    </div>
+
+    <script>
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+let konamiCodeIndex = 0;
+const secretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
+
+function handleKonamiCode(event) {
+    const key = event.key;
+    if (key === konamiCode[konamiCodeIndex]) {
+        konamiCodeIndex++;
+        if (konamiCodeIndex === konamiCode.length) {
+            secretSound.play(); 
+            alert('Secret Found! How did you know  it would even work ?!');
+            konamiCodeIndex = 0; 
+        }
+    } else {
+        konamiCodeIndex = 0; 
+    }
+}
+
+document.addEventListener('keydown', handleKonamiCode);
+
+const butodenCode = [ 'b', 'l', 'y', 'r', 'a'];
+let butodenCodeIndex = 0;
+const secretSound2 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret2.wav'); 
+
+function handleButodenCode(event) {
+    const key = event.key.toLowerCase(); 
+    if (key === butodenCode[butodenCodeIndex]) {
+        butodenCodeIndex++;
+        if (butodenCodeIndex === butodenCode.length) {
+            secretSound2.play();
+            alert('“Shobu da, Kakarotto!” – “Koi, Bejita!"');
+            butodenCodeIndex = 0;
+        }
+    } else {
+        butodenCodeIndex = 0; 
+    }
+}
+document.addEventListener('keydown', handleButodenCode);
+
+const barralCode = ['b', 'a', 'r', 'r', 'a', 'l'];
+let barralCodeIndex = 0;
+const secretSound3 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret3.wav');
+
+function handleBarralCode(event) {
+    const key = event.key.toLowerCase(); 
+    if (key === barralCode[barralCodeIndex]) {
+        barralCodeIndex++;
+        if (barralCodeIndex === barralCode.length) {
+            secretSound3.play();
+            alert('Bravo pour le code BARRAL !');
+            barralCodeIndex = 0;
+        }
+    } else {
+        barralCodeIndex = 0; 
+    }
+}
+
+document.addEventListener('keydown', handleBarralCode);
+
+
+        function toggleGameDetails(game) {
+            const adventureDetails = document.getElementById('adventure-details');
+            const shmupDetails = document.getElementById('shmup-details');
+
+            if (game === 'adventure') {
+                adventureDetails.style.display = 'flex';
+                shmupDetails.style.display = 'none';
+            } else if (game === 'shmup') {
+                adventureDetails.style.display = 'none';
+                shmupDetails.style.display = 'flex';
+            }
+
+            document.querySelector('.game-container').classList.toggle('opened');
+        }
+
+        function launchGame(gameUrl) {
+            window.location.href = gameUrl;
+        }
+          
+        
+
+    </script>
+</body>
+
+</html>

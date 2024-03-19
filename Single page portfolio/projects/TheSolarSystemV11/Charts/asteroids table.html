@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Near-Earth Asteroids Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            cursor: pointer; /* Add cursor style for clickable headers */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #dateDisplay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Near-Earth Asteroids</h1>
+    <div id="dateDisplay"></div>
+
+    <table id="asteroidTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Name</th>
+                <th onclick="sortTable(1)">Distance from Earth (km)</th>
+                <th onclick="sortTable(2)">Approach Date</th>
+                <th onclick="sortTable(3)">Diameter (meters)</th>
+                <th onclick="sortTable(4)">Relative Velocity (km/s)</th>
+                <th onclick="sortTable(5)">Is Potentially Hazardous?</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const apiKey = "Xs0EXbcbpgxB2ueRsAhnweYs96hPNrueTOXNzzYp";
+            
+            // Calculate current date and end date
+            const currentDate = new Date();
+            const endDate = new Date();
+            endDate.setDate(currentDate.getDate() + 7);
+
+            // Format dates for the API request
+            const startDateString = formatDate(currentDate);
+            const endDateString = formatDate(endDate);
+
+            // Display date range
+            document.getElementById("dateDisplay").textContent = `Date Range: ${formatDisplayDate(currentDate)} - ${formatDisplayDate(endDate)}`;
+
+            // Fetch asteroid data
+            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${startDateString}&end_date=${endDateString}&api_key=${apiKey}`)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const nearEarthObjects = JSON.parse(data.contents).near_earth_objects;
+
+                    // Extract asteroid details
+                    const asteroidData = [];
+                    for (const date in nearEarthObjects) {
+                        nearEarthObjects[date].forEach(asteroid => {
+                            const name = asteroid.name;
+                            const distance = parseFloat(asteroid.close_approach_data[0].miss_distance.kilometers);
+                            const approachDate = asteroid.close_approach_data[0].close_approach_date_full;
+                            const diameter = parseFloat(asteroid.estimated_diameter.meters.estimated_diameter_max);
+                            const relativeVelocity = parseFloat(asteroid.close_approach_data[0].relative_velocity.kilometers_per_second);
+                            const isPotentiallyHazardous = asteroid.is_potentially_hazardous_asteroid;
+
+                            // Add data to arrays
+                            asteroidData.push({ name, distance, approachDate, diameter, relativeVelocity, isPotentiallyHazardous });
+                        });
+                    }
+
+                    // Sort asteroids by distance for better visualization
+                    asteroidData.sort((a, b) => a.distance - b.distance);
+
+                    // Create a table
+                    const tableBody = document.querySelector('#asteroidTable tbody');
+                    asteroidData.forEach(asteroid => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${asteroid.name}</td>
+                            <td>${asteroid.distance.toFixed(2)}</td>
+                            <td>${asteroid.approachDate}</td>
+                            <td>${asteroid.diameter.toFixed(2)}</td>
+                            <td>${asteroid.relativeVelocity.toFixed(2)}</td>
+                            <td>${asteroid.isPotentiallyHazardous ? 'Yes' : 'No'}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error fetching asteroid data:", error));
+        });
+
+        // Function to format date as YYYY-MM-DD
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Function to format display date as Day Month Year
+        function formatDisplayDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Function to sort the table by column index
+        function sortTable(columnIndex) {
+            const table = document.getElementById("asteroidTable");
+            const tbody = table.querySelector("tbody");
+            const rows = Array.from(tbody.getElementsByTagName("tr"));
+
+            rows.sort((a, b) => {
+                const aValue = a.getElementsByTagName("td")[columnIndex].innerText;
+                const bValue = b.getElementsByTagName("td")[columnIndex].innerText;
+
+                // Convert values to numbers for numeric columns
+                return columnIndex === 1 || columnIndex === 3 || columnIndex === 4
+                    ? parseFloat(aValue) - parseFloat(bValue)
+                    : aValue.localeCompare(bValue);
+            });
+
+            // Empty the current tbody
+            tbody.innerHTML = "";
+
+            // Append the sorted rows to the tbody
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>
