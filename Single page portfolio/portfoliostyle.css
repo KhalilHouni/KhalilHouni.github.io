@@ -78,7 +78,7 @@
   letter-spacing: 0.143em;
   font-weight: 700;
   text-transform: uppercase;
-  margin-left:90px;
+ 
   text-decoration: none;
   background-image: linear-gradient(
     to right,
@@ -866,3 +866,19 @@ footer {
 }
 
 
+
+@media (max-width: 599px) {
+  .light-mode-link {
+    color: #000000; /* Noir */
+  }
+}
+
+@media (max-width: 599px) {
+  .light-mode-link {
+    color: #000000; /* Noir */
+  }
+
+  .dark-mode .light-mode-link {
+    color: #ffffff; /* Blanc en mode sombre */
+  }
+}
