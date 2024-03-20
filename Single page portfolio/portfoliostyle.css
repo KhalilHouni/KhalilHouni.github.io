@@ -882,3 +882,19 @@ footer {
     color: #ffffff; /* Blanc en mode sombre */
   }
 }
+
+@media (max-width: 62.49875em) {
+  .light-mode-link {
+    color: #000000; /* Noir */
+  }
+}
+
+@media (max-width: 62.49875em) {
+  .light-mode-link {
+    color: #000000; /* Noir */
+  }
+
+  .dark-mode .light-mode-link {
+    color: #ffffff; /* Blanc en mode sombre */
+  }
+}
