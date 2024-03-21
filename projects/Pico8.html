@@ -108,7 +108,7 @@
 
     <div class="game-container">
         <div id="adventure-button" class="game-button" onclick="toggleGameDetails('adventure')">
-            <img src="/Others/old website assets/images/pikokingdom1.jpg" alt="Pico Kingdom">
+            <img src="../Others/old website assets/images/pikokingdom1.jpg" alt="Pico Kingdom">
         </div>
         <div id="adventure-details" class="game-details">
   <div class="game-description">
@@ -124,7 +124,7 @@
         </div>
 
         <div id="shmup-button" class="game-button" onclick="toggleGameDetails('shmup')">
-            <img src="/Others/old website assets/images/coolspace.jpg" alt="Cool Space">
+            <img src="../Others/old website assets/images/coolspace.jpg" alt="Cool Space">
         </div>
         <div id="shmup-details" class="game-details">
 <div class="game-description">
@@ -150,7 +150,7 @@
     <script>
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiCodeIndex = 0;
-const secretSound = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret.wav'); 
+const secretSound = new Audio('../pages/secret.wav'); 
 
 function handleKonamiCode(event) {
     const key = event.key;
@@ -170,7 +170,7 @@ document.addEventListener('keydown', handleKonamiCode);
 
 const butodenCode = [ 'b', 'l', 'y', 'r', 'a'];
 let butodenCodeIndex = 0;
-const secretSound2 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret2.wav'); 
+const secretSound2 = new Audio('../pages/secret2.wav'); 
 
 function handleButodenCode(event) {
     const key = event.key.toLowerCase(); 
@@ -189,7 +189,7 @@ document.addEventListener('keydown', handleButodenCode);
 
 const barralCode = ['b', 'a', 'r', 'r', 'a', 'l'];
 let barralCodeIndex = 0;
-const secretSound3 = new Audio('https://raw.githubusercontent.com/KhalilHouni/KhalilHouni.github.io/main/secret3.wav');
+const secretSound3 = new Audio('../pages/secret3.wav');
 
 function handleBarralCode(event) {
     const key = event.key.toLowerCase(); 
