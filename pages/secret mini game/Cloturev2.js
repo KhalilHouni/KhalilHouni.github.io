@@ -5,8 +5,8 @@ const voiceToggle = document.getElementById("voiceToggle");
 const forceNameButton = document.getElementById("forceName");
 const repeatWinnerButton = document.getElementById("repeatWinner");
 
-const words = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Mamé-Diara", "Neïs", "Adrien", "Maud", "Encadrant(te) du jour"];
-const phoneticNames = ["Kalil", "Arthur", "Clara", "Sabri", "Luka", "Mamé-Diara", "Neïsse", "Adrien", "Moode", "Encadrant(te) du jour"];
+const words = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Léo", "Mamé-Diara", "Neïs", "Adrien", "Maud", "Encadrant(te) du jour"];
+const phoneticNames = ["Kalil", "Arthur", "Clara", "Sabri", "Luka","Léo", "Mamé-Diara", "Neïsse", "Adrien", "Moode", "Encadrant(te) du jour"];
 let lastWinner = null;
 
 let spinning = false;
