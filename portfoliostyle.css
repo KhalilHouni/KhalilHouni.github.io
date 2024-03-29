@@ -898,3 +898,17 @@ footer {
     color: #ffffff; /* Blanc en mode sombre */
   }
 }
+.hero__description {
+  /* styles de base */
+  margin-block-end: 34px;
+}
+
+/* Media Query pour les dimensions spécifiées */
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .hero__description {
+  
+    width: 70%; 
+  }
+  
+}
+
