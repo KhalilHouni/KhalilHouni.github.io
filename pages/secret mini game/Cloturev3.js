@@ -88,7 +88,7 @@ function spinWheel() {
 
       if (winner === "Cloture") {
         const selectedPlayer = chooseRandomPlayer();
-        speakResult("C'est l'heure de la cloture !  Chacun votre tour vous allez parler du déroulement de votre journée.      C'est un moment safe ,     on ne rigole pas,    on n'interrompt pas la parole,    pas de téléphone.       Un tour complet sans que personne ne prenne parole et la cloture est terminée !              Sabri , à toi de commencer !");
+        speakResult("C'est l'heure de la cloture !  Chacun votre tour vous allez parler du déroulement de votre journée.      C'est un moment safe ,     on ne rigole pas,    on n'interrompt pas la parole,    pas de téléphone.       Un tour complet sans que personne ne prenne parole et la cloture est terminée !              Lucas , à toi de commencer !");
         alert("C'est l'heure de la cloture !");
       } else {
         speakResult(`${phoneticName} va démarrer la cloture aujourd'hui, ${phoneticName}`);
