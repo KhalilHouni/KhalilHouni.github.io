@@ -6,7 +6,7 @@ const forceNameButton = document.getElementById("forceName");
 const repeatWinnerButton = document.getElementById("repeatWinner");
 
 const words = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Mamé-Diara", "Neïs", "Adrien", "Maud", "Encadrant(te) du jour","Cloture"];
-const phoneticNames = ["Kalil", "Arthur", "Clara", "Sabri", "Luka", "Mamé-Diara", "Neïsse", "Adrien", "Moode", "Encadrant(te) du jour","Cloture"];
+const phoneticNames = ["Kalil", "Arthur", "Clara", "Sabri", "Luka", "Mamé-Diara", "Neïsse", "Adrien", "Mode", "Encadrant(te) du jour","Cloture"];
 const presence = ["Khalil", "Arthur", "Clara", "Sabri", "Lucas", "Mamé-Diara", "Neïs", "Adrien", "Maud", "Encadrant(te) du jour"];
 
 let lastWinner = null;
