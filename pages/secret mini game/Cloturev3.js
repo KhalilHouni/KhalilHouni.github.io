@@ -88,7 +88,7 @@ function spinWheel() {
 
       if (winner === "Cloture") {
         const selectedPlayer = chooseRandomPlayer();
-        speakResult("C'est l'heure de la cloture ! " chacun à son tour, nous allons parler du déroulement de notre journée. C'est un moment où nous sommes en sécurité, où l'on ne se moque pas, où l'on n'interrompt pas la parole, et où l'on ne touche pas à son téléphone. Nous attendons que chacun ait parlé une fois pour clore la séance. Lucas, à toi de commencer !");
+        speakResult("C'est l'heure de la cloture ! " chacun à son tour, nous allons parler du déroulement de notre journée. C'est un moment où nous sommes en sécurité, où l'on ne se moque pas, où l'on n'interrompt pas la parole, et où l'on ne touche pas à son téléphone. Nous attendons que chacun ait parlé une fois pour clore la séance. khalil, à toi de commencer !");
         alert("C'est l'heure de la cloture !");
       } else {
         speakResult(`${phoneticName} va démarrer la cloture aujourd'hui, ${phoneticName}`);
