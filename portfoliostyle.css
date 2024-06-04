@@ -1,7 +1,7 @@
 /* GLOBAL */
 
 :root {
-  --bg-body: hsl(0, 33%, 99%);
+  --bg-body: hsl(0, 0%, 100%);
   --bg-body2: hsl(0, 0%, 82%);
   --accent: hsl(266, 88%, 51%);
   --text1: hsl(0, 0%, 0%);
@@ -229,6 +229,11 @@ svg {
   border-bottom: 1px solid var(--text2);
 }
 
+.top-border {
+  border-top: 1px solid var(--text2);
+  margin-top: 5em; 
+ 
+}
 /* HEADER */
 
 .header {
@@ -691,6 +696,7 @@ h1 > span {
     width: 100%;
     height: 100%;
     top: 0;
+    border-radius: 15px; 
     background-color: hsl(0, 0%, 0%);
     opacity: 0;
     transition: opacity 150ms ease-in-out;
@@ -912,3 +918,62 @@ footer {
   
 }
 
+
+
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header__language {
+  position: relative;
+}
+
+#language-toggle {
+  color: var(--text1); /* Couleur du texte */
+  background-color: transparent; /* Supprime le fond */
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color var(--transition); /* Transition de la couleur du texte */
+  text-decoration: none; /* Supprime le soulignement du texte */
+  
+}
+.no-underline {
+  text-decoration: none; /* Annule le soulignement seulement pour ce bouton */
+}
+
+#language-toggle:hover {
+  color: var(--accent); /* Couleur du texte au survol */
+}
+
+
+.header__language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--background);
+  border: 1px solid var(--accent);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.header__language-dropdown button {
+  background-color: transparent;
+  color: var(--text1);
+  border: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.header__language-dropdown button:hover {
+  background-color: var(--accent);
+  color: var(--text1);
+}
