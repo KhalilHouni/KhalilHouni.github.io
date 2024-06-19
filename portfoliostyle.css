@@ -44,7 +44,47 @@
 .dark-mode svg path {
   fill: #ffffff; /* White color for dark mode */
 }
+/* fade in des class */ 
+.fade-in {
+  opacity: 0; /* Commence invisible */
+  animation: fadeInAnimation 1s ease-in-out forwards; /* Animation de fondu */
+}
 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skills {
+  opacity: 0;
+  transition: opacity 1s ease; /* Transition d'opacité sur 1 seconde */
+}
+
+.skills.fade-in {
+  opacity: 1;
+}
+
+.projects {
+  opacity: 0;
+  transition: opacity 1s ease; /* Transition d'opacité sur 1 seconde */
+}
+
+.projects.fade-in {
+  opacity: 1;
+}
+
+.contact {
+  opacity: 0;
+  transition: opacity 1s ease; /* Transition d'opacité sur 1 seconde */
+}
+
+.contact.fade-in {
+  opacity: 1;
+}
 
 /* For other SVGs */
 .dark-mode svg path {
