@@ -2,20 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const languageToggle = document.getElementById('language-toggle');
   const elementsToTranslate = document.querySelectorAll('[data-lang]');
   let translations = {};
-  let currentLanguage = 'fr'; // Par défaut, la langue est le français
-
-  // Fonction pour charger les traductions depuis le fichier JSON
+  // Default to 'fr' if no language is stored
+  let currentLanguage = localStorage.getItem('preferredLanguage') || 'fr';
+  // Function to load translations from JSON file
   const loadTranslations = () => {
     return fetch('translations.json')
       .then(response => response.json())
       .then(data => {
         translations = data;
-        updateLanguage(currentLanguage); // Initialisation du contenu avec la langue par défaut
+        updateLanguage(currentLanguage); // Initialize content with the preferred language
       })
       .catch(error => console.error('Error loading translations:', error));
   };
 
-  // Fonction pour mettre à jour le contenu des éléments avec l'attribut data-lang
+  // Function to update elements with data-lang attribute based on selected language
   const updateLanguage = (lang) => {
     currentLanguage = lang;
     elementsToTranslate.forEach((element) => {
@@ -23,29 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
       element.innerHTML = translations[lang][key];
     });
     languageToggle.textContent = lang.toUpperCase();
+    localStorage.setItem('preferredLanguage', lang); // Store selected language in localStorage
   };
 
-  // Event pour le clic sur le bouton de bascule de langue
-  languageToggle.addEventListener('click', (e) => {
-let newLanguage;
-switch(currentLanguage) {
-case 'fr':
-newLanguage = 'en';
-break;
-case 'en':
-newLanguage = 'es';
-break;
-case 'es':
-newLanguage = 'fr';
-break;
-default:
-newLanguage = 'fr'; // Par défaut, basculer vers le français
-}
-updateLanguage(newLanguage);
-});
+  // Event listener for language toggle button click
+  languageToggle.addEventListener('click', () => {
+    let newLanguage;
+    switch (currentLanguage) {
+      case 'fr':
+        newLanguage = 'en';
+        break;
+      case 'en':
+        newLanguage = 'es';
+        break;
+      case 'es':
+        newLanguage = 'fr';
+        break;
+      default:
+        newLanguage = 'fr'; // Default to French if current language is unknown
+    }
+    updateLanguage(newLanguage);
+  });
 
-
-  // Ajouter des événements aux boutons dans le dropdown
+  // Add click event listeners to buttons in the language dropdown
   document.querySelectorAll('.header__language-dropdown button').forEach(button => {
     button.addEventListener('click', (e) => {
       const newLanguage = e.target.getAttribute('data-lang');
@@ -53,6 +53,6 @@ updateLanguage(newLanguage);
     });
   });
 
-  // Charger les traductions au chargement de la page
+  // Load translations when the page is loaded
   loadTranslations();
 });
