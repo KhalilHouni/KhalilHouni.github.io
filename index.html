@@ -59,7 +59,7 @@
             </svg>
           </a>
          
-          <a href="https://www.linkedin.com/in/khalil-houni-bb13832a5/" class="header__social">
+          <a href="https://fr.linkedin.com/in/khalilhouni" class="header__social">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -140,7 +140,7 @@
 
       <section class="skills">
         
-        <div class="wrapper skills__wrapper bottom-border">
+        <div class="wrapper skills__wrapper">
           <h2 class="visually-hidden">Skills</h2>
           <div class="skills__item">
             <h3 class="skills__title" data-lang="html">HTML</h3>
@@ -189,240 +189,190 @@
         />
       </section>
 
+      <div class="section-divider bottom-border"></div>
       
-      <section class="projects ">
+      <section class="projects">
         <div class="wrapper projects__wrapper">
-          <div class="projects__grid ">
-            
-            <h2 class="projects__headline header-xl" data-lang="projects-headline">Projects</h2>
-            
-            <a href="#contact" class="projects__contact underline" data-lang="contact-me">Contact me</a>
-
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="./projects/imageprojects/gameconsoleicon 2.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/gameconsoleicon 2.jpg"
-                  alt="screenshot of my pico-8 Games artwork"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-pico8">Pico-8 Games</h3>
-              <p class="projects__tags">
-                <span>Pico-8</span>
-                <span>Lua</span>
-              </p>
-              <div class="projects__links">
-                <a href="./School Projects/Pico8 Games/Pico8.html" class="light-mode-link" data-lang="play-games">Play the games!</a>
+          <h2 class="projects__headline header-xl" data-lang="projects-headline">Projects</h2>
+          
+          <div class="projects__carousel">
+            <!-- Premier groupe de 4 projets -->
+            <div class="carousel__container" data-index="0">
+              <!-- Projets 1-2 -->
+              <div class="project-card">
+                <!-- Premier projet - Pico-8 -->
+                <img src="./projects/imageprojects/gameconsoleicon 2.jpg" alt="Pico-8 Games" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-pico8">Pico-8 Games</h3>
+                  <p class="projects__description" data-lang="pico8-desc">Mini-jeux créés avec Pico-8, un moteur de jeu rétro</p>
+                  <div class="projects__tags">
+                    <span>Pico-8</span>
+                    <span>Lua</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="./School Projects/Pico8 Games/Pico8.html" class="light-mode-link" data-lang="play-games">Play the games!</a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <!-- Deuxième projet - Solar System -->
+                <img src="./projects/imageprojects/solarsystem icon.jpg" alt="Solar System" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-solar">Solar System</h3>
+                  <p class="projects__description" data-lang="solar-desc">Visualisation interactive du système solaire</p>
+                  <div class="projects__tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="./projects/TheSolarSystemV11/Page de garde.html" class="light-mode-link" data-lang="view-project">View Project</a>
+                    <a href="https://github.com/KhalilHouni/projet-Visualisation-Du-System-Solaire" class="light-mode-link" data-lang="view-code">View Code</a>
+                  </div>
+                </div>
+              </div>
+              <!-- Projets 3-4 -->
+              <div class="project-card">
+                <!-- Troisième projet - Hey GPT -->
+                <img src="./projects/imageprojects/Heygpticon.jpg" alt="Hey GPT" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-heygpt">Hey GPT</h3>
+                  <p class="projects__description" data-lang="heygpt-desc">Extension Chrome pour interagir avec GPT-3</p>
+                  <div class="projects__tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/projet-Extension-Chrome-HeyGPT" class="light-mode-link" data-lang="view-code">View Code</a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <!-- Quatrième projet - Social Network -->
+                <img src="./projects/imageprojects/social-network.jpg" alt="Social Network" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-socialnetwork">Social Network</h3>
+                  <p class="projects__description" data-lang="social-desc">Réseau social développé en PHP</p>
+                  <div class="projects__tags">
+                    <span>PHP</span>
+                    <span>SQL</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/projet-reseau-social-php" class="light-mode-link" data-lang="view-code">View Code</a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/solarsystem icon.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/solarsystem icon.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-solar">Dataviz and API - The Solar system</h3>
-              <p class="projects__tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-              </p>
-              <div class="projects__links">
-                <a href="./projects/TheSolarSystemV11/Page de garde.html" class="light-mode-link" data-lang="view-project">View Project</a>
-                <a href="https://github.com/KhalilHouni/projet-Visualisation-Du-System-Solaire" class="light-mode-link" data-lang="view-code">View Code</a>
+            <!-- Deuxième groupe de 4 projets -->
+            <div class="carousel__container" data-index="1">
+              <!-- Projets 5-6 -->
+              <div class="project-card">
+                <!-- Cinquième projet - E-commerce -->
+                <img src="./projects/imageprojects/usedfurnitures.jpg" alt="E-commerce" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-Ecommerce">E-commerce</h3>
+                  <p class="projects__description" data-lang="ecommerce-desc">Plateforme de vente de meubles d'occasion</p>
+                  <div class="projects__tags">
+                    <span>React</span>
+                    <span>JavaScript</span>
+                    <span>CSS</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/projet-plateforme-de-vente-de-meubles-ventes-de-meubles" class="light-mode-link" data-lang="view-code">View Code</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="./projects/imageprojects/Heygpticon.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/Heygpticon.jpg"
-                  alt="screenshot of my Hey GPT Chrome browser extension"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-heygpt">Chrome Extension - Hey GPT!</h3>
-              <p class="projects__tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>OpenAi API</span>
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/projet-Extension-Chrome-HeyGPT" class="light-mode-link" data-lang="view-code">View Code</a>
+              <div class="project-card">
+                <!-- Sixième projet - Microblogging -->
+                <img src="./projects/imageprojects/microblogging.jpg" alt="Microblogging" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-microblog">Microblogging</h3>
+                  <p class="projects__description" data-lang="microblog-desc">Plateforme de microblogging développée avec Laravel</p>
+                  <div class="projects__tags">
+                    <span>Laravel</span>
+                    <span>PHP</span>
+                    <span>Tailwind</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/Projet-microblogging" class="light-mode-link" data-lang="view-code">View Code</a>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/social-network.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/social-network.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-socialnetwork">Small Social Network'</h3>
-              <p class="projects__tags">
-                <span>PHP</span>
-                <span>SQL</span>
-                <span>MAMP</span>
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/projet-reseau-social-php" class="light-mode-link" data-lang="view-code">View Code</a>
+              <!-- Projets 7-8 -->
+              <div class="project-card">
+                <!-- Septième projet - WaveFinder -->
+                <img src="./projects/imageprojects/WaveFinder_logo.jpg" alt="WaveFinder" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-wavefinderapp">WaveFinder</h3>
+                  <p class="projects__description" data-lang="wavefinder-desc">Application mobile pour trouver des spots de surf</p>
+                  <div class="projects__tags">
+                    <span>Android Studio</span>
+                    <span>Kotlin</span>
+                    <span>Go</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/projet-mobile-front-WaveFinder-khalil" class="light-mode-link" data-lang="view-project-front">View Front Repo</a>
+                    <a href="https://github.com/KhalilHouni/projet-mobile-Back-WaveFinder-khalil" class="light-mode-link" data-lang="view-project-back">View Back Repo</a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-card">
+                <!-- Huitième projet - Crypto -->
+                <img src="./projects/imageprojects/crypto-currencies.jpg" alt="Crypto" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-Crypto">Crypto</h3>
+                  <p class="projects__description" data-lang="crypto-desc">Suivi en temps réel des crypto-monnaies</p>
+                  <div class="projects__tags">
+                    <span>React</span>
+                    <span>JavaScript</span>
+                    <span>API</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://github.com/KhalilHouni/Crypto-react-app/tree/gh-pages" class="light-mode-link" data-lang="view-code">View Code</a>
+                    <a href="https://khalilhouni.github.io/Crypto-react-app" class="light-mode-link" data-lang="view-codedemo">View Demo</a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/usedfurnitures.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/usedfurnitures.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-Ecommerce">Used Furniture Sales Platform'</h3>
-              <p class="projects__tags">
-                <span>REACT</span>
-                <span>JAVASCRIPT</span>
-                <span>CSS</span>
-                <span>JAVA</span>
-                <span>SPRING BOOT</span>
-
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/projet-plateforme-de-vente-de-meubles-ventes-de-meubles" class="light-mode-link" data-lang="view-code">View Code</a>
+            <!-- Dernier groupe (si nécessaire) -->
+            <div class="carousel__container" data-index="2">
+              <!-- Projet Scrapidoo -->
+              <div class="project-card">
+                <img src="./projects/imageprojects/scrapidoo-icon.jpg" alt="Scrapidoo" class="project-image">
+                <div class="project-content">
+                  <h3 class="projects__name" data-lang="project-scrapidoo">Scrapidoo</h3>
+                  <p class="projects__description" data-lang="scrapidoo-desc">Extension Chrome pour le scraping de données</p>
+                  <div class="projects__tags">
+                    <span>JavaScript</span>
+                    <span>Web Scrapping</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                  </div>
+                  <div class="projects__links">
+                    <a href="https://chromewebstore.google.com/detail/scrapidoo-your-job-search/odghmdjmkhhigledbfknehnfnjhpjadb?hl=fr" class="light-mode-link" data-lang="view-store">Chrome Web Store</a>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/microblogging.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/microblogging.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-microblog">MICROBLOGGING PLATFORM</h3>
-              <p class="projects__tags">
-                <span>Laravel</span>
-                <span>Tailwind</span>
-                <span>PHP</span>
-                <span>PGSQL</span>
-                <span>HTML</span>
-
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/Projet-microblogging" class="light-mode-link" data-lang="view-code">View Code</a>
+            <div class="carousel-controls">
+              <button class="carousel-button prev-button" aria-label="Previous projects">
+                <span data-lang="previous">Previous</span>
+              </button>
+              <div class="carousel-indicators">
+                <span class="current-page">1</span> / <span class="total-pages">3</span>
               </div>
+              <button class="carousel-button next-button" aria-label="Next projects">
+                <span data-lang="next">Next</span>
+              </button>
             </div>
-
-
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/WaveFinder_logo.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/WaveFinder_logo.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-wavefinderapp">WaveFinder App</h3>
-              <p class="projects__tags">
-                <span>Android Studio</span>
-                <span>Kotlin</span>
-                <span>GO</span>
-                <span>Create API</span>
-                <span>Front and Back</span>
-
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/projet-mobile-front-WaveFinder-khalil" class="light-mode-link" data-lang="view-project-front">View Front repo</a>
-                <a href="https://github.com/KhalilHouni/projet-mobile-Back-WaveFinder-khalil" class="light-mode-link" data-lang="view-project-back">View Back Repo</a>
-              </div>
-            </div>
-
-            <div class="projects__item">
-              <picture class="projects__picture">
-                <source
-                  media="(min-width: 62.5em)"
-                  srcset="/projects/imageprojects/crypto-currencies.jpg"
-                />
-                <img
-                  class="projects__image"
-                  src="./projects/imageprojects/crypto-currencies.jpg"
-                  alt="screenshot from of the Solar System  from my project"
-                  width="343"
-                  height="253"
-                />
-              </picture>
-              <h3 class="projects__name" data-lang="project-Crypto">Real-Time Crypto Currency Tracker</h3>
-              <p class="projects__tags">
-                <span>React</span>
-                <span>CSS</span>
-                <span>API</span>
-                <span>javascript</span>
-                
-
-              </p>
-              <div class="projects__links">
-                <a href="https://github.com/KhalilHouni/Crypto-react-app/tree/gh-pages" class="light-mode-link" data-lang="view-code">View Code</a>
-                <a href="https://khalilhouni.github.io/Crypto-react-app/" class="light-mode-link" data-lang="view-codedemo">View Demo</a>
-              </div>
-            </div>
-
-
           </div>
         </div>
       </section>
-
-
-   
-
+      
       <section id="contact" class="contact bg-less-dark">
         <div class="wrapper contact__wrapper bottom-border">
           <div class="contact__text">
@@ -523,7 +473,7 @@
             </svg>
           </a>
          
-          <a href="https://www.linkedin.com/in/khalil-houni-bb13832a5/" class="header__social">
+          <a href="https://fr.linkedin.com/in/khalilhouni" class="header__social">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -544,5 +494,6 @@
     </footer>
  
     <script src="scriptfadein.js"></script>
+    <script src="carouselScript.js"></script>
   </body>
 </html>
