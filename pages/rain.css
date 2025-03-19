@@ -1,0 +1,758 @@
+.rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 2s;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.rain-container.active {
+    opacity: 1;
+}
+
+.rain-drop {
+    position: absolute;
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(transparent, var(--text1));
+    animation: rain-fall 1s linear infinite;
+    /* Positionner initialement toutes les gouttes au-dessus de l'écran */
+    top: -120px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .rain-drop {
+        animation: rain-fall-random 1s linear infinite;
+    }
+
+    .rain-drop:nth-child(3n) {
+        opacity: 0.5;
+        height: 80px;
+        animation-delay: 0.2s;
+        animation-duration: 0.8s;
+    }
+
+    .rain-drop:nth-child(5n) {
+        opacity: 0.7;
+        height: 60px;
+        animation-delay: 0.1s;
+        animation-duration: 1.2s;
+    }
+
+    .rain-drop:nth-child(2n) {
+        animation-delay: -0.5s;
+    }
+}
+
+@keyframes rain-fall {
+    from {
+        transform: translateY(-100vh);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes rain-fall-random {
+    0% {
+        transform: translateY(-120vh); /* Commence bien au-dessus de l'écran */
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Ajout de l'effet de lever de soleil */
+.sunrise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    background: linear-gradient(to top, #ff7e00, #ffeb00);
+    opacity: 0;
+    animation: sunrise 5s ease-in-out forwards;
+}
+
+@keyframes sunrise {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.horse-animation {
+    position: fixed;
+    width: 100px;
+    height: 60px;
+    background: url('/assets/images/horse-sprite.gif') no-repeat;
+    background-size: contain;
+    z-index: 9998;
+    pointer-events: none;
+    animation: horseRun 8s linear forwards;
+    mix-blend-mode: normal; /* Changé de multiply à normal */
+}
+
+@keyframes horseRun {
+    0% {
+        left: -100px;
+        top: 250px;
+    }
+    100% {
+        left: calc(100vw + 100px);
+        top: 250px;
+    }
+}
+
+.water-overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 119, 190, 0.2) 20%,
+        rgba(0, 119, 190, 0.4) 40%,
+        rgba(0, 119, 190, 0.6)
+    );
+    pointer-events: none;
+    z-index: 9997;
+    animation: waterRise 20s ease-in-out forwards;
+    box-shadow: 0 0 50px rgba(0, 119, 190, 0.3);
+}
+
+.water-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    filter: blur(3px);
+    animation: waterShimmer 3s linear infinite;
+}
+
+@keyframes waterRise {
+    0% {
+        height: 0;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    10% {
+        opacity: 1;
+        height: 30vh;
+        transform: translateY(0);
+    }
+    80% {
+        opacity: 1;
+        height: 100vh;
+        transform: translateY(0);
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        height: 100vh;
+    }
+}
+
+@keyframes waterShimmer {
+    0% {
+        opacity: 0.3;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translateX(100%);
+    }
+}
+
+.fire-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+}
+
+.flame {
+    position: absolute;
+    bottom: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at center, #ff6600, #ff0000);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    filter: blur(5px);
+    animation: flameRise 2s infinite;
+    opacity: 0;
+}
+
+@keyframes flameRise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-200px) scale(0);
+        opacity: 0;
+    }
+}
+
+.fire-overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, 
+        rgba(255, 0, 0, 0.2),
+        rgba(255, 100, 0, 0.1),
+        transparent 70%);
+    pointer-events: none;
+    z-index: 9996;
+    animation: fireGlow 2s infinite;
+}
+
+@keyframes fireGlow {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.forest-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: linear-gradient(to bottom,
+        rgba(34, 139, 34, 0.1),
+        rgba(34, 139, 34, 0.4));
+    animation: forestGlow 20s ease-in-out forwards;
+}
+
+.leaf {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: rgba(34, 139, 34, 0.8);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    animation: leafFall 10s linear;
+    opacity: 0;
+}
+
+@keyframes leafFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes forestGlow {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.saria-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: linear-gradient(45deg,
+        rgba(0, 255, 0, 0.1),
+        rgba(34, 139, 34, 0.2));
+    animation: sariaGlow 20s ease-in-out forwards;
+    transition: opacity 2s ease-out;
+}
+
+.magic-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: sparkle 4s ease-in-out infinite;
+    box-shadow: 
+        0 0 15px rgba(152, 251, 152, 0.6),
+        0 0 30px rgba(0, 255, 0, 0.4);
+}
+
+@keyframes sariaGlow {
+    0% { 
+        opacity: 0; 
+        background: linear-gradient(45deg,
+            rgba(0, 255, 0, 0),
+            rgba(34, 139, 34, 0));
+    }
+    10% { 
+        opacity: 1; 
+        background: linear-gradient(45deg,
+            rgba(0, 255, 0, 0.2),
+            rgba(34, 139, 34, 0.3));
+    }
+    80% { 
+        opacity: 1;
+        background: linear-gradient(45deg,
+            rgba(0, 255, 0, 0.2),
+            rgba(34, 139, 34, 0.3));
+    }
+    100% { 
+        opacity: 0;
+        background: linear-gradient(45deg,
+            rgba(0, 255, 0, 0),
+            rgba(34, 139, 34, 0));
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+        transform: translate(50px, -50px) scale(1.2) rotate(180deg);
+    }
+    75% {
+        opacity: 1;
+        transform: translate(100px, -100px) scale(0.8) rotate(360deg);
+    }
+    100% {
+        transform: translate(150px, -150px) scale(0) rotate(540deg);
+        opacity: 0;
+    }
+}
+
+.sandstorm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: rgba(210, 180, 140, 0.2);
+    animation: sandstormEffect 20s ease-in-out forwards;
+}
+
+.sand-particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: #d2b48c;
+    animation: sandMove 2s linear infinite;
+}
+
+.shadow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 0.95),
+        rgba(20, 0, 30, 0.98));
+    animation: shadowPulse 20s ease-in-out forwards;
+    filter: blur(8px);
+}
+
+.shadow-creature {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 1);
+    filter: blur(8px);
+    animation: creatureMove 8s ease-in-out infinite;
+    box-shadow: 
+        0 0 40px rgba(76, 0, 255, 0.2),
+        0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes sandMove {
+    from {
+        transform: translate(-100vw, -50vh) rotate(0deg);
+    }
+    to {
+        transform: translate(100vw, 50vh) rotate(360deg);
+    }
+}
+
+@keyframes sandstormEffect {
+    0% { opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100px, -100px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes creatureMove {
+    0% {
+        transform: translate(-100%, -100%) scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(100%, 100%) scale(3);
+        opacity: 0.9;
+        filter: blur(15px);
+    }
+    100% {
+        transform: translate(-100%, -100%) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes shadowPulse {
+    0% { opacity: 0; }
+    10% { 
+        opacity: 1;
+        filter: blur(8px);
+    }
+    50% {
+        filter: blur(12px);
+    }
+    90% { 
+        opacity: 1;
+        filter: blur(8px);
+    }
+    100% { opacity: 0; }
+}
+
+.light-rays {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: raysFadeIn 20s ease-in-out forwards;
+    background: radial-gradient(circle at center, 
+        rgba(255, 255, 255, 0.2),
+        transparent 70%);
+}
+
+.light-ray {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3px;
+    height: 200vh; /* Augmenté significativement pour des rayons plus longs */
+    transform-origin: center;
+    background: linear-gradient(180deg,
+        rgb(255, 255, 255) 0%,
+        rgba(255, 223, 100, 0.5) 50%,
+        transparent 100%);
+    filter: blur(2px);
+    animation: rayRotate 8s linear infinite;
+    margin-top: -100vh; /* Pour centrer les rayons */
+}
+
+/* Rayons horizontaux */
+.light-ray:nth-child(3n) {
+    width: 200vw;
+    height: 3px;
+    margin-top: 0;
+    margin-left: -100vw;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 223, 100, 0.5) 50%,
+        transparent 100%);
+}
+
+@keyframes rayRotate {
+    0% { 
+        transform: translate(-50%, 0) rotate(0deg);
+    }
+    100% { 
+        transform: translate(-50%, 0) rotate(360deg);
+    }
+}
+
+.dark-mode .light-ray {
+    background: linear-gradient(180deg,
+        rgb(255, 255, 255) 0%,
+        rgba(255, 223, 100, 0.8) 50%,
+        transparent 100%);
+    filter: blur(3px);
+}
+
+.light-orb {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 223, 100, 0.8) 30%,
+        rgba(255, 223, 100, 0.2) 70%,
+        transparent 100%);
+    box-shadow: 
+        0 0 60px rgba(255, 223, 100, 0.6),
+        0 0 100px rgba(255, 223, 100, 0.4);
+    filter: blur(5px);
+    pointer-events: none;
+    z-index: 9998;
+    animation: orbPulse 4s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+}
+
+.key-indicator {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text1);
+    opacity: 0.7;
+}
+
+.ocarina-note.active {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+@keyframes activationPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 30px var(--accent);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@keyframes rayRotate {
+    0% { transform: rotate(0deg) translateY(0); }
+    100% { transform: rotate(360deg) translateY(0); }
+}
+
+@keyframes orbPulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes raysFadeIn {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.time-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: linear-gradient(45deg,
+        rgba(0, 64, 255, 0.2),
+        rgba(0, 128, 255, 0.3));
+    animation: timeWarp 10s ease-in-out forwards;
+}
+
+.time-spiral {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(0, 149, 255, 0.2) 40%,
+        rgba(0, 89, 255, 0.3) 50%,
+        transparent 60%
+    );
+    animation: spiralSpin 3s linear infinite;
+    mix-blend-mode: screen;
+}
+
+.time-particles {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(135, 206, 250, 0.8);
+    border-radius: 50%;
+    animation: timeTravel 2s linear infinite;
+}
+
+@keyframes timeWarp {
+    0% { 
+        opacity: 0;
+        transform: scale(1);
+    }
+    10% { 
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    90% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% { 
+        opacity: 0;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes spiralSpin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes timeTravel {
+    0% {
+        transform: translateZ(0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateZ(1000px) scale(2);
+        opacity: 0;
+    }
+}
+
+.lullaby-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    background: radial-gradient(circle at center,
+        rgba(255, 192, 203, 0.2),
+        rgba(255, 182, 193, 0.4));
+    animation: lullabyFade 20s ease-in-out forwards;
+    transition: opacity 1s ease;
+}
+
+.lullaby-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: starTwinkle 3s ease-in-out infinite, starRotate 20s linear infinite;
+    transform-origin: 50vw 50vh; /* Point de rotation au centre de l'écran */
+}
+
+@keyframes starRotate {
+    from {
+        transform: rotate(0deg) translate(200px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translate(200px) rotate(-360deg);
+    }
+}
+
+@keyframes lullabyFade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes starTwinkle {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: scale(1.5);
+        opacity: 1;
+        box-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 192, 203, 0.4);
+    }
+}
