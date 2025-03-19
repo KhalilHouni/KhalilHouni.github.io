@@ -1,5 +1,5 @@
 let clickCount = 0;
-const CLICK_THRESHOLD = 3;
+const CLICK_THRESHOLD = 7;
 let ocarinaMode = false;
 let noteSequence = [];
 const SEQUENCES = {
