@@ -54,7 +54,7 @@
       "microblog-desc": "Microblogging platform developed with Laravel",
       "wavefinder-desc": "Mobile app to find surf spots",
       "crypto-desc": "Real-time cryptocurrency tracking",
-      "scrapidoo-desc": "Chrome extension for data scraping"
+      "scrapidoo-desc": "Job search companion for Indeed - Chrome extension"
     },
     "fr": {
       "welcome": "Bienvenue!",
@@ -111,7 +111,7 @@
       "microblog-desc": "Plateforme de microblogging développée avec Laravel",
       "wavefinder-desc": "Application mobile pour trouver des spots de surf",
       "crypto-desc": "Suivi en temps réel des crypto-monnaies",
-      "scrapidoo-desc": "Extension Chrome pour le scraping de données"
+      "scrapidoo-desc": "Assistant de recherche d'emploi pour Indeed - Extension Chrome"
     },
     "es": {
       "welcome": "¡Bienvenido!",
@@ -168,7 +168,7 @@
       "microblog-desc": "Plataforma de microblogging desarrollada con Laravel",
       "wavefinder-desc": "Aplicación móvil para encontrar spots de surf",
       "crypto-desc": "Seguimiento de criptomonedas en tiempo real",
-      "scrapidoo-desc": "Extensión Chrome para scraping de datos"
+      "scrapidoo-desc": "Asistente de búsqueda de empleo para Indeed - Extensión Chrome"
     }
   }
 
