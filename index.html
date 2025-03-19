@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Full Stack Developer | React, Node.js, PHP, Kotlin | Ada Tech School Student">
+    <meta name="keywords" content="Full Stack, Developer, React, Node.js, PHP, Laravel, Kotlin, Go">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,12 +18,14 @@
       href="./assets/images/favicon.jpg"
     />
     <link rel="stylesheet" href="portfoliostyle.css" />
+    <link rel="stylesheet" href="./pages/rain.css" />
     <title>Khalil Houni | Full Stack Developer</title>
     <script src="scriptdarkmode.js"></script>
     <script src="scriptslangue.js"></script>
+    <script src="./pages/easterEgg.js"></script>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="top">
       <h2 class="visually-hidden">Header</h2>
       <div class="wrapper">
         <nav class="header__nav">
@@ -80,10 +84,37 @@
       </div>
     </header>
 
-  
+    <nav class="side-nav">
+      <ul class="side-nav__list">
+        <li class="side-nav__item">
+          <a href="#top" class="side-nav__link">
+            <span class="side-nav__dot"></span>
+            <span class="side-nav__text">Home</span>
+          </a>
+        </li>
+        <li class="side-nav__item">
+          <a href="#skills" class="side-nav__link">
+            <span class="side-nav__dot"></span>
+            <span class="side-nav__text">Skills</span>
+          </a>
+        </li>
+        <li class="side-nav__item">
+          <a href="#projects" class="side-nav__link">
+            <span class="side-nav__dot"></span>
+            <span class="side-nav__text">Projects</span>
+          </a>
+        </li>
+        <li class="side-nav__item">
+          <a href="#contact" class="side-nav__link">
+            <span class="side-nav__dot"></span>
+            <span class="side-nav__text">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <main id="main" class="fade-in">
-      <section class="hero">
+      <section id="home" class="hero">
         <div class="wrapper hero__wrapper bottom-border">
           <div class="hero__content">
             <picture>
@@ -110,13 +141,14 @@
               width="530"
               height="129"
             />
+            <!-- 
             <img
               class="hero__circle"
               src="./assets/images/pattern-circle.svg"
               alt=""
               width="129"
               height="129"
-            />
+            />-->
             <div class="hero__text">
               <h1 class="hero__headline header-xl" data-lang="hero-headline">
                 Hello there!<br />
@@ -138,7 +170,7 @@
         </div>
       </section>
 
-      <section class="skills">
+      <section id="skills" class="skills">
         
         <div class="wrapper skills__wrapper">
           <h2 class="visually-hidden">Skills</h2>
@@ -191,7 +223,7 @@
 
       <div class="section-divider bottom-border"></div>
       
-      <section class="projects">
+      <section id="projects" class="projects">
         <div class="wrapper projects__wrapper">
           <h2 class="projects__headline header-xl" data-lang="projects-headline">Projects</h2>
           
@@ -341,7 +373,7 @@
             <div class="carousel__container" data-index="2">
               <!-- Projet Scrapidoo -->
               <div class="project-card">
-                <img src="./projects/imageprojects/scrapidoo-icon.jpg" alt="Scrapidoo" class="project-image">
+                <img src="./projects/imageprojects/scrapidoo-icon.png" alt="Scrapidoo" class="project-image">
                 <div class="project-content">
                   <h3 class="projects__name" data-lang="project-scrapidoo">Scrapidoo</h3>
                   <p class="projects__description" data-lang="scrapidoo-desc">Extension Chrome pour le scraping de données</p>
@@ -456,6 +488,7 @@
         <nav class="header__nav">
           <h2 class="visually-hidden">Navigation</h2>
           <a href="/" class="header__home" data-lang="welcome">KhalilHouni</a>
+          <span class="header__made-by">Made by Khalil Houni</span>
           <a href="https://github.com/KhalilHouni" class="header__social">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -495,5 +528,6 @@
  
     <script src="scriptfadein.js"></script>
     <script src="carouselScript.js"></script>
+    <script src="sideNav.js"></script>
   </body>
 </html>

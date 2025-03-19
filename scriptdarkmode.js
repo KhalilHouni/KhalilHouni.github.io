@@ -30,9 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to toggle dark mode
 function toggleDarkMode() {
-    // Toggle dark mode by changing CSS variables
-    document.documentElement.classList.toggle('dark-mode');
-  }
+  document.documentElement.classList.toggle('dark-mode');
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  
+  // Ajouter une animation de rotation au clic
+  darkModeToggle.style.transform = 'scale(0.8)';
+  setTimeout(() => {
+    darkModeToggle.style.transform = 'scale(1)';
+  }, 200);
+}
   
   // Add event listener to the dark mode toggle button
   document.addEventListener('DOMContentLoaded', function() {
@@ -69,6 +75,12 @@ function toggleDarkMode() {
       
       // Redirect user to pre-filled Google Form
       window.location.href = preFilledUrl;
+    });
+
+    form.addEventListener('submit', function(event) {
+      const submitButton = this.querySelector('button[type="submit"]');
+      submitButton.innerHTML = '<span class="loading">Sending...</span>';
+      submitButton.disabled = true;
     });
   });
   
