@@ -1,35 +1,20 @@
 
-document.addEventListener('scroll', function() {
-  var skillsSection = document.querySelector('.skills');
-  var skillsSectionPosition = skillsSection.getBoundingClientRect().top;
-  var windowHeight = window.innerHeight;
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
 
-  if (skillsSectionPosition < windowHeight / 1.2) {
-    skillsSection.classList.add('fade-in');
-  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("fade-in-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const targets = document.querySelectorAll(".skills, .projects, .contact, .hero__content");
+  targets.forEach((target) => observer.observe(target));
 });
-
-
-
-document.addEventListener('scroll', function() {
-    var skillsSection = document.querySelector('.projects');
-    var skillsSectionPosition = skillsSection.getBoundingClientRect().top;
-    var windowHeight = window.innerHeight;
-  
-    if (skillsSectionPosition < windowHeight / 1.2) {
-      skillsSection.classList.add('fade-in');
-    }
-  });
-  
-  
-  document.addEventListener('scroll', function() {
-    var skillsSection = document.querySelector('.contact');
-    var skillsSectionPosition = skillsSection.getBoundingClientRect().top;
-    var windowHeight = window.innerHeight;
-  
-    if (skillsSectionPosition < windowHeight / 1.2) {
-      skillsSection.classList.add('fade-in');
-    }
-  });
-  
 

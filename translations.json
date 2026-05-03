@@ -2,8 +2,8 @@
     "en": {
       "welcome": "Welcome!",
       "hero-headline": "Hello there!<br />I'm <span>Khalil Houni</span>.",
-      "hero-description": "Residing in France, I am currently a student at Ada Tech School, pursuing my journey to become a Full Stack developer. My enthusiasm for the web is boundless, and I am eager to both create and expand my knowledge about this indispensable tool in our daily lives!",
-      "hero-apprenticeship": "Currently looking for an apprenticeship!",
+      "hero-description": "Based in France, I completed a Bachelor's degree in Physics before pivoting to computer science. Following my training as an Applications Developer Designer at Ada Tech School, I am now focused on Full Stack development.",
+      "hero-apprenticeship": "I am now looking to strengthen my skills<br /> and gain expertise through hands-on projects,<br /> with the goal of solidifying and deepening my knowledge.",
       "contact-me": "Contact me",
       "my-cv": "My CV",
       "html": "HTML",
@@ -59,8 +59,8 @@
     "fr": {
       "welcome": "Bienvenue!",
       "hero-headline": "Bonjour!<br />Je suis <span>Khalil Houni</span>.",
-      "hero-description": "Résidant en France, je suis actuellement étudiant à Ada Tech School, poursuivant mon parcours pour devenir développeur Full Stack. Mon enthousiasme pour le web est sans limites et j'ai hâte de créer et d'étendre mes connaissances sur cet outil indispensable dans notre vie quotidienne!",
-      "hero-apprenticeship": "Actuellement à la recherche d'une alternance !",
+      "hero-description": "Résidant en France, j'ai suivi un cursus en Licence de Physique avant de me reconvertir dans l'informatique. Suite à ma formation de Concepteur Développeur d’Applications à Ada Tech School, je me consacre aujourd'hui au développement Full Stack.",
+      "hero-apprenticeship": "Je cherche désormais à renforcer mes acquis<br /> et à monter en expertise sur des projets concrets,<br /> avec l'objectif de valider et d'approfondir mes connaissances.",
       "contact-me": "Contactez moi",
       "my-cv": "Mon CV",
       "html": "HTML",
@@ -116,8 +116,8 @@
     "es": {
       "welcome": "¡Bienvenido!",
       "hero-headline": "¡Hola!<br />Soy <span>Khalil Houni</span>.",
-      "hero-description": "Residiendo en Francia, actualmente soy estudiante en Ada Tech School, siguiendo mi camino para convertirme en desarrollador Full Stack. ¡Mi entusiasmo por la web es ilimitado y estoy ansioso por crear y expandir mis conocimientos sobre esta herramienta indispensable en nuestra vida diaria!",
-      "hero-apprenticeship": "¡Actualmente buscando una pasantía!",
+      "hero-description": "Residente en Francia, realicé una Licenciatura en Física antes de reorientarme hacia la informática. Tras mi formación como Diseñador Desarrollador de Aplicaciones en Ada Tech School, hoy me dedico al desarrollo Full Stack.",
+      "hero-apprenticeship": "Busco fortalecer mis conocimientos<br /> y ganar experiencia en proyectos concretos,<br /> con el objetivo de validar y profundizar mis conocimientos.",
       "contact-me": "Contáctame",
       "my-cv": "Mi CV",
       "html": "HTML",

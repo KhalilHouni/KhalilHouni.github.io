@@ -1,74 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.side-nav__link'); // Correction du sélecteur
 
+/**
+ * Side Navigation Logic
+ * Handles scroll spy and smooth navigation.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".side-nav__link");
+
+  /**
+   * Updates active state of nav links based on scroll position
+   */
   function updateActiveLink() {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    const screenMiddle = scrollY + (windowHeight / 2);
+    const screenMiddle = scrollY + windowHeight / 2;
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
+      const sectionId = section.getAttribute("id");
 
-      // Vérifie si la section est visible dans la fenêtre
       if (screenMiddle >= sectionTop && screenMiddle <= sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${sectionId}`);
         });
       }
     });
 
-    // Gestion spéciale pour la section Home
     if (scrollY < 100) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#top') {
-          link.classList.add('active');
-        }
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === "#top");
       });
     }
   }
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+  // Smooth scroll with offsets
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href');
-      
-      if (targetId === '#top') {
+      const targetId = this.getAttribute("href");
+      const targetElement = targetId === "#top" ? document.body : document.querySelector(targetId);
+
+      if (targetElement) {
+        const offset = 80; // General offset for header
+        const targetPosition = targetId === "#top" ? 0 : targetElement.offsetTop - offset;
+        
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-        return;
-      }
-      
-      if (targetId === '#skills') {
-        const apprenticeshipText = document.querySelector('[data-lang="hero-apprenticeship"]');
-        window.scrollTo({
-          top: apprenticeshipText.getBoundingClientRect().top + window.pageYOffset - 35,
-          behavior: 'smooth'
-        });
-      } else if (targetId === '#projects') {
-        const projectsHeadline = document.querySelector('.projects__headline');
-        window.scrollTo({
-          top: projectsHeadline.getBoundingClientRect().top + window.pageYOffset - 8,
-          behavior: 'smooth'
-        });
-      } else {
-        const targetSection = document.querySelector(targetId);
-        window.scrollTo({
-          top: targetSection.offsetTop - 100,
-          behavior: 'smooth'
+          top: targetPosition,
+          behavior: "smooth",
         });
       }
     });
   });
 
-  window.addEventListener('scroll', updateActiveLink);
+  // Throttled scroll listener
+  let isScrolling;
+  window.addEventListener("scroll", () => {
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(updateActiveLink, 50);
+  }, false);
+
   updateActiveLink();
 });
+
