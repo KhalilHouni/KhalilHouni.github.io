@@ -2,6 +2,7 @@
 
 ## Description
 Ceci est mon portfolio personnel (V3 2025), présentant mes projets, compétences et parcours professionnel. Le portfolio est construit avec JavaScript, CSS et HTML pur, garantissant un code propre et efficace. Il propose un design responsive qui fonctionne parfaitement sur les appareils mobiles comme sur les ordinateurs.
+This brand new updated version is filled with easter eggs and fun ! Can you discover them all ?
 
 ## Fonctionnalités
 - 🎨 Design responsive (mobile & desktop)
