@@ -1,0 +1,359 @@
+
+/* Awesome 3D Easter Egg Styles */
+
+.awesome-3d-mode {
+    perspective: 1000px;
+    background-color: #050505 !important;
+    color: #fff !important;
+    overflow-x: hidden;
+    transition: background-color 1s ease;
+}
+
+.awesome-3d-mode #awesome-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.awesome-3d-mode .wrapper, 
+.awesome-3d-mode section,
+.awesome-3d-mode .header,
+.awesome-3d-mode .side-nav {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+/* Avatar Animation */
+.awesome-3d-mode .hero__image {
+    animation: awesome-avatar-float 3s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0, 255, 249, 0.4);
+    border: 2px solid #00fff9;
+    border-radius: 20px;
+}
+
+@keyframes awesome-avatar-float {
+    0%, 100% { transform: translateZ(100px) translateY(0) rotateY(0deg); }
+    50% { transform: translateZ(150px) translateY(-20px) rotateY(10deg); }
+}
+
+.awesome-3d-mode section {
+    background: rgba(20, 20, 20, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin-bottom: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.awesome-3d-mode .header {
+    transform: translateZ(50px);
+    background: rgba(10, 10, 10, 0.9) !important;
+}
+
+.awesome-3d-mode .skills__item,
+.awesome-3d-mode .project-card {
+    transform: translateZ(30px);
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.awesome-3d-mode .skills__item:hover,
+.awesome-3d-mode .project-card:hover {
+    transform: translateZ(100px) rotateX(10deg) scale(1.1);
+    box-shadow: 0 30px 60px rgba(255, 0, 193, 0.4);
+    z-index: 100;
+}
+
+.awesome-3d-mode .header__social:hover {
+    transform: translateZ(80px) rotateZ(360deg);
+    transition: transform 0.5s ease;
+}
+
+/* Matrix Mode */
+.matrix-mode {
+    background: #000 !important;
+    color: #00ff41 !important;
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+.matrix-mode * {
+    color: #00ff41 !important;
+    border-color: #00ff41 !important;
+    text-shadow: 0 0 5px #00ff41;
+}
+
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Mirror Mode */
+.mirror-mode {
+    transform: scaleX(-1);
+    filter: hue-rotate(90deg);
+}
+
+/* Vaporwave Mode (Konami) */
+.vaporwave-mode {
+    background: linear-gradient(135deg, #ff00ff, #00ffff, #ff00ff) !important;
+    background-size: 400% 400% !important;
+    animation: vaporwave-bg 10s ease infinite !important;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23fff"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'), auto;
+}
+
+.vaporwave-mode * {
+    text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    letter-spacing: 5px !important;
+}
+
+.vaporwave-mode .hero__image {
+    filter: saturate(2) contrast(1.5) sepia(0.5) hue-rotate(-50deg);
+    box-shadow: 10px 10px 0px #ff00ff, -10px -10px 0px #00ffff;
+}
+
+.vaporwave-mode section {
+    border: 4px solid #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(5px) invert(0.1);
+}
+
+@keyframes vaporwave-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* X-Ray Mode Enhanced */
+.xray-active {
+    cursor: none;
+}
+
+#xray-lens {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 5px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5), 0 0 0 9999px rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    pointer-events: none;
+    overflow: hidden;
+    display: none;
+    background: rgba(0, 20, 0, 0.8);
+}
+
+.xray-content {
+    padding: 40px;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff41;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Hire Me Chatbot Mode */
+#hire-bot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 380px;
+    height: 550px;
+    background: #1a1a1a;
+    border: 2px solid var(--accent);
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    z-index: 10005;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    overflow: hidden;
+    font-family: 'Space Grotesk', sans-serif;
+    animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.hire-header {
+    background: var(--accent);
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hire-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.msg {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.msg-bot { background: #333; color: white; align-self: flex-start; }
+.msg-user { background: var(--accent); color: white; align-self: flex-end; }
+
+.hire-options {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    background: #222;
+}
+
+.hire-option {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.hire-option:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Starfox Mode */
+#starfox-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 20000;
+    display: none;
+    cursor: crosshair;
+}
+
+#starfox-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#starfox-hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    pointer-events: none;
+    text-shadow: 2px 2px #000;
+}
+
+#starfox-health {
+    width: 200px;
+    height: 10px;
+    border: 2px solid #fff;
+    margin-top: 10px;
+}
+
+#starfox-health-bar {
+    width: 100%;
+    height: 100%;
+    background: #00ff00;
+    transition: width 0.3s, background 0.3s;
+}
+
+#starfox-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff41;
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: bold;
+    display: none;
+}
+
+/* Glitch effect on text when in 3D mode */
+
+.arcade-mode .skills__item {
+    transition: none !important;
+}
+
+#arcade-ball {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    z-index: 10001;
+    display: none;
+}
+
+#arcade-paddle {
+    position: fixed;
+    height: 15px;
+    background: #00ff41;
+    border-radius: 10px;
+    z-index: 10000;
+    display: none;
+    box-shadow: 0 0 15px #00ff41;
+}
+
+/* Physics Mode */
+.physics-active section, 
+.physics-active header,
+.physics-active .project-card,
+.physics-active .skills__item {
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    position: relative;
+    z-index: 500;
+}
+
+.physics-active section:active {
+    cursor: grabbing;
+}
+
+/* Glitch effect on text when in 3D mode */
+.awesome-3d-mode h1, 
+.awesome-3d-mode h2 {
+    text-shadow: 2px 2px #ff00c1, -2px -2px #00fff9;
+    animation: awesome-glitch 1s infinite;
+}
+
+@keyframes awesome-glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}

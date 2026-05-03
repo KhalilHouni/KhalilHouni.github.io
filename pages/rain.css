@@ -95,14 +95,14 @@
 
 .horse-animation {
     position: fixed;
-    width: 100px;
-    height: 60px;
-    background: url('/assets/images/horse-sprite.gif') no-repeat;
-    background-size: contain;
+    width: 300px;
+    height: 200px;
+    background: url('../assets/images/horse-sprite.gif') no-repeat center !important;
+    background-size: contain !important;
     z-index: 9998;
     pointer-events: none;
     animation: horseRun 8s linear forwards;
-    mix-blend-mode: normal; /* Changé de multiply à normal */
+    mix-blend-mode: normal;
 }
 
 @keyframes horseRun {
@@ -225,7 +225,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, 
+    background: linear-gradient(to top,
         rgba(255, 0, 0, 0.2),
         rgba(255, 100, 0, 0.1),
         transparent 70%);
@@ -322,31 +322,31 @@
     border-radius: 50%;
     filter: blur(1px);
     animation: sparkle 4s ease-in-out infinite;
-    box-shadow: 
+    box-shadow:
         0 0 15px rgba(152, 251, 152, 0.6),
         0 0 30px rgba(0, 255, 0, 0.4);
 }
 
 @keyframes sariaGlow {
-    0% { 
-        opacity: 0; 
+    0% {
+        opacity: 0;
         background: linear-gradient(45deg,
             rgba(0, 255, 0, 0),
             rgba(34, 139, 34, 0));
     }
-    10% { 
-        opacity: 1; 
-        background: linear-gradient(45deg,
-            rgba(0, 255, 0, 0.2),
-            rgba(34, 139, 34, 0.3));
-    }
-    80% { 
+    10% {
         opacity: 1;
         background: linear-gradient(45deg,
             rgba(0, 255, 0, 0.2),
             rgba(34, 139, 34, 0.3));
     }
-    100% { 
+    80% {
+        opacity: 1;
+        background: linear-gradient(45deg,
+            rgba(0, 255, 0, 0.2),
+            rgba(34, 139, 34, 0.3));
+    }
+    100% {
         opacity: 0;
         background: linear-gradient(45deg,
             rgba(0, 255, 0, 0),
@@ -415,7 +415,7 @@
     background: rgba(0, 0, 0, 1);
     filter: blur(8px);
     animation: creatureMove 8s ease-in-out infinite;
-    box-shadow: 
+    box-shadow:
         0 0 40px rgba(76, 0, 255, 0.2),
         0 0 80px rgba(0, 0, 0, 0.8);
 }
@@ -468,14 +468,14 @@
 
 @keyframes shadowPulse {
     0% { opacity: 0; }
-    10% { 
+    10% {
         opacity: 1;
         filter: blur(8px);
     }
     50% {
         filter: blur(12px);
     }
-    90% { 
+    90% {
         opacity: 1;
         filter: blur(8px);
     }
@@ -493,7 +493,7 @@
     mix-blend-mode: screen;
     opacity: 0;
     animation: raysFadeIn 20s ease-in-out forwards;
-    background: radial-gradient(circle at center, 
+    background: radial-gradient(circle at center,
         rgba(255, 255, 255, 0.2),
         transparent 70%);
 }
@@ -527,10 +527,10 @@
 }
 
 @keyframes rayRotate {
-    0% { 
+    0% {
         transform: translate(-50%, 0) rotate(0deg);
     }
-    100% { 
+    100% {
         transform: translate(-50%, 0) rotate(360deg);
     }
 }
@@ -555,7 +555,7 @@
         rgba(255, 223, 100, 0.8) 30%,
         rgba(255, 223, 100, 0.2) 70%,
         transparent 100%);
-    box-shadow: 
+    box-shadow:
         0 0 60px rgba(255, 223, 100, 0.6),
         0 0 100px rgba(255, 223, 100, 0.4);
     filter: blur(5px);
@@ -601,11 +601,11 @@
 }
 
 @keyframes orbPulse {
-    0%, 100% { 
+    0%, 100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.8;
     }
-    50% { 
+    50% {
         transform: translate(-50%, -50%) scale(1.2);
         opacity: 1;
     }
@@ -660,19 +660,19 @@
 }
 
 @keyframes timeWarp {
-    0% { 
+    0% {
         opacity: 0;
         transform: scale(1);
     }
-    10% { 
+    10% {
         opacity: 1;
         transform: scale(1.1);
     }
-    90% { 
+    90% {
         opacity: 1;
         transform: scale(1.2);
     }
-    100% { 
+    100% {
         opacity: 0;
         transform: scale(1.3);
     }
@@ -744,15 +744,94 @@
 }
 
 @keyframes starTwinkle {
-    0%, 100% { 
+    0%, 100% {
         transform: scale(1);
         opacity: 0.3;
     }
-    50% { 
+    50% {
         transform: scale(1.5);
         opacity: 1;
-        box-shadow: 
+        box-shadow:
             0 0 10px rgba(255, 255, 255, 0.8),
             0 0 20px rgba(255, 192, 203, 0.4);
     }
+}
+
+/* Song of Storms: Heavy Rain & Lightning */
+.lightning-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    opacity: 0;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+@keyframes lightning {
+    0%, 90%, 100% { opacity: 0; }
+    92% { opacity: 0.6; }
+    94% { opacity: 0.2; }
+    96% { opacity: 0.8; }
+}
+
+/* Bolero of Fire: Enhanced Embers */
+.ember {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 6px;
+    background: #ff4500;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff8c00;
+    animation: emberRise 3s ease-out forwards;
+}
+
+@keyframes emberRise {
+    0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Song of Time: Blue Distortion */
+.time-warp-active {
+    filter: hue-rotate(180deg) saturate(2) brightness(1.2) !important;
+    transition: filter 1s ease-in-out;
+}
+
+/* Serenade of Water: Bubbles */
+.bubble {
+    position: absolute;
+    bottom: -20px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: bubbleRise 10s ease-in infinite;
+}
+
+@keyframes bubbleRise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-110vh) translateX(50px); opacity: 0; }
+}
+
+/* Minuet of Forest: Floating Spores */
+.forest-spore {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background: #a2ff00;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 8px #a2ff00;
+    animation: sporeDrift 15s linear infinite;
+}
+
+@keyframes sporeDrift {
+    0% { transform: translate(0, 0); opacity: 0; }
+    10% { opacity: 0.8; }
+    100% { transform: translate(100px, -100vh); opacity: 0; }
 }
