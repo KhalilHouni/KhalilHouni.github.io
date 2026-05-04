@@ -447,18 +447,18 @@ h1 > span:hover::after {
     padding-bottom: 60px;
   }
 
-  .hero__content { gap: 2rem;
+  .hero__content {
     display: flex;
     align-items: center;
   }
 
-  .hero__content picture { flex-shrink: 0;
+  .hero__content picture {
     order: 2;
   }
 
   .hero__image {
     position: relative;
-    width: 45%;
+    width: 42vw;
     max-width: 445px;
     /* width: 322px; */
     height: auto;
@@ -486,8 +486,8 @@ h1 > span:hover::after {
   .hero__text {
     /* width: 62vw; */
     margin-block-start: 90px;
-    margin-right: 0;
-    flex: 1 1 50%;
+    margin-right: -30px;
+    flex: 1 0 58vw;
     text-align: left;
     z-index: 1;
   }
@@ -501,7 +501,7 @@ h1 > span:hover::after {
   }
 
   .hero__description {
-    /* width: 100%; max-width: 40ch; */
+    /* width: 70%; */
     margin-block-end: 34px;
   }
 }
@@ -516,12 +516,12 @@ h1 > span:hover::after {
     padding-bottom: 100px;
   }
 
-  .hero__content { gap: 2rem;
+  .hero__content {
     align-items: flex-start;
   }
 
-  .hero__content picture { flex-shrink: 0;
-    margin-left: 0;
+  .hero__content picture {
+    margin-left: -80px;
    
   }
 
@@ -848,7 +848,7 @@ footer {
 @media screen and (min-width: 600px) and (max-width: 1000px) {
   .hero__description {
   
-    width: 100%; max-width: 40ch; 
+    width: 70%; 
   }
   
 }
