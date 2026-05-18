@@ -54,7 +54,19 @@
       "microblog-desc": "Microblogging platform developed with Laravel",
       "wavefinder-desc": "Mobile app to find surf spots",
       "crypto-desc": "Real-time cryptocurrency tracking",
-      "scrapidoo-desc": "Job search companion for Indeed - Chrome extension"
+      "scrapidoo-desc": "Job search companion for Indeed - Chrome extension",
+      "featured-label": "Featured Project",
+      "featured-live": "Live on Chrome Web Store",
+      "what-i-learned": "What I Learned",
+      "learned-pico8": "Building within strict limits — 128×128 px, 16 colors, 8-bit sound — showed me that constraints spark creativity. Learned Lua scripting and game loop fundamentals.",
+      "learned-solar": "Canvas API for planetary orbit animations with real astronomical data. Learned data visualization, frame rate management, and trigonometric math for circular motion.",
+      "learned-heygpt": "Chrome extension architecture: manifest v3, content scripts, background workers, and calling external APIs while respecting Content Security Policy.",
+      "learned-social": "Full MVC architecture in vanilla PHP, session-based authentication, SQL joins and relations. Built a complete CRUD app with user profiles, posts, and connections.",
+      "learned-ecommerce": "React component composition, lifting state up, and managing a shopping cart with useContext and useReducer. Learned to think in components and unidirectional data flow.",
+      "learned-microblog": "Laravel's Eloquent ORM for elegant database queries, Blade templating, and Tailwind utility-first CSS. Fast, expressive backend development with clean code.",
+      "learned-wavefinder": "Android development with Kotlin, GPS and location APIs, and building a Go REST backend. Cross-language communication between mobile and server, and mobile-first UX thinking.",
+      "learned-crypto": "Real-time data polling with useEffect and setInterval, async state updates, and API rate limiting. Keeping UI responsive while handling continuous live data streams.",
+      "learned-scrapidoo": "Publishing to the Chrome Web Store: privacy policies, manifest requirements, and content script isolation. Turned a personal tool into a product with real users actively using it."
     },
     "fr": {
       "welcome": "Bienvenue!",
@@ -111,7 +123,19 @@
       "microblog-desc": "Plateforme de microblogging développée avec Laravel",
       "wavefinder-desc": "Application mobile pour trouver des spots de surf",
       "crypto-desc": "Suivi en temps réel des crypto-monnaies",
-      "scrapidoo-desc": "Assistant de recherche d'emploi pour Indeed - Extension Chrome"
+      "scrapidoo-desc": "Assistant de recherche d'emploi pour Indeed - Extension Chrome",
+      "featured-label": "Projet à la une",
+      "featured-live": "Disponible sur Chrome Web Store",
+      "what-i-learned": "Ce que j'ai appris",
+      "learned-pico8": "Travailler dans des contraintes strictes — 128×128 px, 16 couleurs, son 8 bits — m'a montré que les limites stimulent la créativité. J'ai appris Lua et les fondamentaux de la boucle de jeu.",
+      "learned-solar": "L'API Canvas pour animer les orbites planétaires avec des données astronomiques réelles. Visualisation de données, gestion du framerate et trigonométrie pour le mouvement circulaire.",
+      "learned-heygpt": "Architecture d'extension Chrome : manifest v3, scripts de contenu, background workers, et appels à des APIs externes en respectant la Content Security Policy.",
+      "learned-social": "Architecture MVC complète en PHP natif, authentification par session, jointures SQL. Création d'une app CRUD avec profils, posts et connexions entre utilisateurs.",
+      "learned-ecommerce": "Composition de composants React, remontée d'état, et gestion d'un panier avec useContext et useReducer. Penser en composants et en flux de données unidirectionnel.",
+      "learned-microblog": "L'ORM Eloquent de Laravel pour des requêtes élégantes, le templating Blade, et Tailwind CSS. Développement backend rapide et expressif avec du code propre.",
+      "learned-wavefinder": "Développement Android avec Kotlin, APIs GPS et localisation, et construction d'un backend REST en Go. Communication entre mobile et serveur, et UX mobile-first.",
+      "learned-crypto": "Polling de données en temps réel avec useEffect et setInterval, mises à jour d'état asynchrones et limitation des appels API. UI réactive face à des flux de données continus.",
+      "learned-scrapidoo": "Publication sur le Chrome Web Store : politique de confidentialité, exigences du manifest, isolation des scripts. Transformer un outil personnel en produit utilisé par de vrais utilisateurs."
     },
     "es": {
       "welcome": "¡Bienvenido!",
@@ -168,7 +192,19 @@
       "microblog-desc": "Plataforma de microblogging desarrollada con Laravel",
       "wavefinder-desc": "Aplicación móvil para encontrar spots de surf",
       "crypto-desc": "Seguimiento de criptomonedas en tiempo real",
-      "scrapidoo-desc": "Asistente de búsqueda de empleo para Indeed - Extensión Chrome"
+      "scrapidoo-desc": "Asistente de búsqueda de empleo para Indeed - Extensión Chrome",
+      "featured-label": "Proyecto Destacado",
+      "featured-live": "En vivo en Chrome Web Store",
+      "what-i-learned": "Lo que aprendí",
+      "learned-pico8": "Trabajar dentro de límites estrictos — 128×128 px, 16 colores, sonido de 8 bits — me enseñó que las restricciones despiertan la creatividad. Aprendí Lua y los fundamentos del bucle de juego.",
+      "learned-solar": "API Canvas para animar órbitas planetarias con datos astronómicos reales. Visualización de datos, gestión del framerate y trigonometría para el movimiento circular.",
+      "learned-heygpt": "Arquitectura de extensión Chrome: manifest v3, content scripts, background workers, y llamadas a APIs externas respetando la Content Security Policy.",
+      "learned-social": "Arquitectura MVC completa en PHP puro, autenticación por sesión, joins SQL. Construcción de una app CRUD con perfiles, posts y conexiones entre usuarios.",
+      "learned-ecommerce": "Composición de componentes React, elevación de estado, y gestión de carrito con useContext y useReducer. Pensar en componentes y en flujo de datos unidireccional.",
+      "learned-microblog": "El ORM Eloquent de Laravel para consultas elegantes, plantillas Blade, y CSS utilitario con Tailwind. Desarrollo backend rápido y expresivo con código limpio.",
+      "learned-wavefinder": "Desarrollo Android con Kotlin, APIs de GPS y localización, y construcción de un backend REST en Go. Comunicación entre móvil y servidor, y UX mobile-first.",
+      "learned-crypto": "Polling de datos en tiempo real con useEffect y setInterval, actualizaciones asíncronas de estado y limitación de llamadas a la API. UI reactiva ante flujos de datos continuos.",
+      "learned-scrapidoo": "Publicación en la Chrome Web Store: política de privacidad, requisitos del manifest, aislamiento de scripts. Convertir una herramienta personal en un producto con usuarios reales."
     }
   }
 
