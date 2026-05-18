@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>`;
         launchConfetti();
       });
-  }
+  });
 
   function launchConfetti() {
     const canvas = document.createElement("canvas");
@@ -80,6 +80,5 @@ document.addEventListener("DOMContentLoaded", function () {
       if (++frame < total) requestAnimationFrame(animate);
       else canvas.remove();
     })();
-  });
+  }
 });
-

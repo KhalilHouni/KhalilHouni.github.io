@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Keyboard ---
   document.addEventListener("keydown", (e) => {
+    const tag = document.activeElement?.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
     if (e.key === "ArrowRight") goTo(currentIndex + 1);
     if (e.key === "ArrowLeft")  goTo(currentIndex - 1);
   });

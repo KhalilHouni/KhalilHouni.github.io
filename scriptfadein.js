@@ -16,5 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const targets = document.querySelectorAll(".skills, .projects, .contact, .hero__content");
   targets.forEach((target) => observer.observe(target));
+
 });
 

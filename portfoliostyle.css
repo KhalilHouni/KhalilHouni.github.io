@@ -369,6 +369,7 @@ svg {
   translate: -50%;
   width: 240px;
   height: auto;
+  border-radius: 15px;
 }
 
 .hero__rings {
@@ -589,7 +590,7 @@ h1 > span:hover::after {
   padding-block: 40px;
 }
 
-.skills__item { transition: transform 0.2s ease-out; cursor: pointer; 
+.skills__item { transition: transform 0.2s ease-out; cursor: pointer;
   text-align: center;
   transition: transform 0.3s ease, background-color 0.3s ease;
   padding: 1rem;
@@ -1744,6 +1745,44 @@ footer {
     border-radius: 15px;
     perspective: 1200px;
     margin-bottom: 0;
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 17px;
+    background: conic-gradient(
+        from var(--angle, 0deg),
+        transparent 0deg,
+        rgba(var(--accent-rgb), 0.85) 60deg,
+        transparent 120deg
+    );
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: border-spin 2.5s linear infinite paused;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.project-card__inner {
+    position: relative;
+    z-index: 1;
+}
+
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes border-spin {
+    to { --angle: 360deg; }
 }
 
 .project-card__inner {
@@ -2381,3 +2420,93 @@ body:has(#custom-cursor) * { cursor: none !important; }
 }
 
 .secret-hint-close:hover { opacity: 1; }
+
+
+
+/* ══════════════════════════════════════════════════════
+   TABLET & FOLDABLE RESPONSIVE IMPROVEMENTS
+   ══════════════════════════════════════════════════════ */
+
+/* Fold cover / very narrow phone (≤ 390px) ─────────── */
+@media (max-width: 24.375em) {
+  .hero__image { width: 185px; }
+  .hero__text  { margin-block-start: 290px; }
+  .hero__cv    { margin-left: 24px; }
+}
+
+/* Small tablet portrait — 600px to 767px ────────────── */
+@media (min-width: 37.5em) and (max-width: 47.99em) {
+  /* Side nav: show it — desktop-only hide was too aggressive */
+  .side-nav { display: block; }
+
+  /* Hero: bigger image, aligned to sit near the second paragraph */
+  .hero__content {
+    align-items: flex-start;
+  }
+  .hero__content picture {
+    margin-top: 5rem;
+  }
+  .hero__image {
+    width: 220px;
+    max-width: none;
+    flex-shrink: 0;
+    border-radius: 15px;
+  }
+  .hero__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-block-start: 60px;
+    margin-right: 0;
+  }
+  .hero__cv { margin-left: 40px; }
+
+  /* Project cards */
+  .project-image           { height: 185px; }
+  .project-card__front     { gap: 1rem; padding: 1.25rem; }
+  .featured-project__image { height: 180px; }
+}
+
+/* Mid tablet — 768px to 999px (iPad portrait, Galaxy Z Fold inner portrait) */
+@media (min-width: 48em) and (max-width: 62.49em) {
+  /* Skills: jump to 3 cols a full breakpoint earlier */
+  .skills__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Hero: bigger image, aligned to sit near the second paragraph */
+  .hero__content {
+    align-items: flex-start;
+  }
+  .hero__content picture {
+    margin-top: 5.5rem;
+  }
+  .hero__image {
+    width: 300px;
+    max-width: none;
+    flex-shrink: 0;
+    border-radius: 15px;
+  }
+  .hero__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-right: 0;
+  }
+  .hero__description { width: auto; }
+
+  /* Project cards */
+  .project-image           { height: 210px; }
+  .project-card__front     { gap: 1.25rem; padding: 1.25rem; }
+  .featured-project__image { height: 210px; }
+}
+
+/* Tablet landscape — 1000px to 1199px (iPad landscape, Fold inner landscape) */
+@media (min-width: 62.5em) and (max-width: 74.99em) {
+  /* Restore 2-col carousel: the max-width:1200px rule forces 1 col here,
+     leaving huge empty space on a wide screen */
+  .carousel__container:not([data-index="2"]) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Shorter images so 2-col cards don't become too tall at this width */
+  .project-image { height: 185px; }
+}

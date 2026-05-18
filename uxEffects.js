@@ -129,13 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => navi.classList.remove("navi--show"), 7000);
     }
 
-    setTimeout(showNavi, 300000);                      // first hint after 5 minutes
-    let naviInterval = setInterval(showNavi, 480000);  // then every 8 minutes
+    setTimeout(showNavi, 900000);                      // first hint after 15 minutes
+    let naviInterval = setInterval(showNavi, 600000);  // then every 10 minutes
 
     // Called by easterEgg.js after Saria's Song to make Navi appear much more often
     window.naviBoost = function () {
       clearInterval(naviInterval);
-      naviInterval = setInterval(showNavi, 45000);     // every 45 seconds
+      naviInterval = setInterval(showNavi, 60000);     // every 1 minute
     };
   }
 });
