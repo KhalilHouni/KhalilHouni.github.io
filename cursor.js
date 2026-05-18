@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dot = document.createElement("div");
   dot.id = "custom-cursor";
+  dot.style.opacity = "0";
   document.body.appendChild(dot);
 
   let mouseX = -200, mouseY = -200;
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    dot.style.opacity = "1";
     if (!scheduled) {
       scheduled = true;
       requestAnimationFrame(() => {
