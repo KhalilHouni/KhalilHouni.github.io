@@ -2036,12 +2036,13 @@ footer {
 }
 
 /* ── Custom Cursor ────────────────────────────────── */
-@media (hover: none), (pointer: coarse) {
-  #custom-cursor { display: none !important; }
-  body:has(#custom-cursor) * { cursor: auto !important; }
+@media (hover: hover) and (pointer: fine) {
+  body:has(#custom-cursor) * { cursor: none !important; }
 }
 
-body:has(#custom-cursor) * { cursor: none !important; }
+@media (hover: none), (pointer: coarse) {
+  #custom-cursor { display: none !important; }
+}
 
 #custom-cursor {
   position: fixed;
