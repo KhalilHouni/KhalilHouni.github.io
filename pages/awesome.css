@@ -243,61 +243,67 @@
     color: white;
 }
 
-/* Starfox Mode */
-#starfox-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #000;
-    z-index: 20000;
-    display: none;
-    cursor: crosshair;
-}
-
-#starfox-canvas {
-    width: 100%;
-    height: 100%;
-}
-
-#starfox-hud {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    font-size: 20px;
-    pointer-events: none;
-    text-shadow: 2px 2px #000;
-}
-
-#starfox-health {
-    width: 200px;
-    height: 10px;
-    border: 2px solid #fff;
-    margin-top: 10px;
-}
-
-#starfox-health-bar {
-    width: 100%;
-    height: 100%;
-    background: #00ff00;
-    transition: width 0.3s, background 0.3s;
-}
-
-#starfox-msg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #00ff41;
-    font-size: 3rem;
-    text-align: center;
-    font-family: 'Space Grotesk', sans-serif;
+.hire-option--contact {
+    background: var(--accent);
+    color: white;
     font-weight: bold;
-    display: none;
 }
+
+.hire-option--contact:hover {
+    filter: brightness(1.15);
+}
+
+.hire-close {
+    cursor: pointer;
+    font-size: 1.3rem;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.hire-close:hover { opacity: 1; }
+
+.hire-input-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+}
+
+.hire-input {
+    flex: 1;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 8px 14px;
+    color: #fff;
+    font-size: 13px;
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.hire-input:focus { border-color: var(--accent); }
+
+.hire-send {
+    background: var(--accent);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.2s;
+}
+
+.hire-send:hover { filter: brightness(1.2); }
+
 
 /* Glitch effect on text when in 3D mode */
 

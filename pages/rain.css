@@ -310,7 +310,7 @@
     background: linear-gradient(45deg,
         rgba(0, 255, 0, 0.1),
         rgba(34, 139, 34, 0.2));
-    animation: sariaGlow 20s ease-in-out forwards;
+    animation: sariaGlow 15s ease-in-out forwards;
     transition: opacity 2s ease-out;
 }
 

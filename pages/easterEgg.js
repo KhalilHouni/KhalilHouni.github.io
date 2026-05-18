@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     activeEffects.forEach(el => el && el.remove ? el.remove() : null);
     activeIntervals.forEach(id => clearInterval(id));
     activeEffects = []; activeIntervals = [];
-    document.body.classList.remove("time-warp-active", "matrix-mode", "mirror-mode", "vaporwave-mode", "physics-active", "xray-active", "arcade-mode", "awesome-3d-mode");
+    document.body.classList.remove("matrix-mode", "mirror-mode", "vaporwave-mode", "physics-active", "xray-active", "arcade-mode", "awesome-3d-mode");
     stopAwesomeAnimation();
     document.removeEventListener("mousemove", handleAwesomeTilt);
     document.removeEventListener("mousemove", updateXRay);
@@ -112,9 +112,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function playNoteWithEffect(note) {
     const btn = document.querySelector(`.ocarina-note[data-note="${note}"]`);
-    if (btn) { btn.classList.add("active"); setTimeout(() => btn.classList.remove("active"), 200); }
+    if (btn) {
+      btn.classList.add("active");
+      setTimeout(() => btn.classList.remove("active"), 200);
+      spawnNoteParticle(note, btn);
+    }
     playNote(note);
     checkSequence(note);
+  }
+
+  const NOTE_COLORS = { La: "#9333ea", Mi: "#22c55e", Re: "#f97316", Si: "#3b82f6", Fa: "#ef4444" };
+
+  function spawnNoteParticle(note, btn) {
+    const rect = btn.getBoundingClientRect();
+    for (let i = 0; i < 5; i++) {
+      const p = document.createElement("div");
+      p.className = "note-particle";
+      p.textContent = note;
+      p.style.cssText = `left:${rect.left + rect.width / 2}px;top:${rect.top}px;color:${NOTE_COLORS[note]};--dx:${(Math.random() - 0.5) * 90}px;--dy:${-45 - Math.random() * 55}px;`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 800);
+    }
   }
 
   function playNote(note) {
@@ -153,9 +171,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  const SONG_META = {
+    "storm.mp3":   { name: "Song of Storms",    color: "#60a5fa" },
+    "fire.mp3":    { name: "Bolero of Fire",     color: "#f97316" },
+    "time.mp3":    { name: "Song of Time",       color: "#818cf8" },
+    "sun.mp3":     { name: "Sun's Song",         color: "#fbbf24" },
+    "water.mp3":   { name: "Serenade of Water",  color: "#22d3ee" },
+    "forest.mp3":  { name: "Minuet of Forest",   color: "#4ade80" },
+    "epona.mp3":   { name: "Epona's Song",       color: "#d97706" },
+    "lullaby.mp3": { name: "Zelda's Lullaby",    color: "#c084fc" },
+    "saria.mp3":   { name: "Saria's Song",       color: "#86efac" },
+    "light.mp3":   { name: "Prelude of Light",   color: "#fef08a" },
+    "shadow.mp3":  { name: "Nocturne of Shadow", color: "#a855f7" },
+    "spirit.mp3":  { name: "Requiem of Spirit",  color: "#fb923c" },
+  };
+
+  function showSongAnnouncement(songFile) {
+    const info = SONG_META[songFile];
+    if (!info) return;
+    const existing = document.getElementById("song-announcement");
+    if (existing) existing.remove();
+    const el = document.createElement("div");
+    el.id = "song-announcement";
+    el.innerHTML = `<span class="song-announcement__note">♪</span> ${info.name}`;
+    el.style.setProperty("--song-color", info.color);
+    document.body.appendChild(el);
+    setTimeout(() => el.classList.add("show"), 50);
+    setTimeout(() => { el.classList.remove("show"); setTimeout(() => el.remove(), 500); }, 2800);
+  }
+
   function triggerSongEffect(songFile) {
     const audio = new Audio(`./Others/Exos/notes/songs/${songFile}`);
     audio.play();
+    showSongAnnouncement(songFile);
     clearEffects();
     switch (songFile) {
       case "storm.mp3": createSongOfStorms(); break;
@@ -185,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     XRAY: toggleXRayMode,
     PHYSICS: () => document.body.classList.toggle("physics-active"),
     HIRE: toggleNavi,
-    FOX: toggleStarfox,
+
     ZELDA: () => {
         if (ocarinaMode) {
             keyboardEnabled = !keyboardEnabled;
@@ -267,237 +315,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function stopAwesomeAnimation() { if(awesomeRaf) cancelAnimationFrame(awesomeRaf); document.getElementById("awesome-bg")?.remove(); }
 
-  // --- STARFOX FULL 3D ENGINE ---
-  let foxActive = false, foxPaused = false, foxRaf = null, foxKeys = {};
-  let lastFoxTap = { key: null, time: 0 };
-  let fState = {
-    score: 0, health: 100, camX: 0, camY: 0, camZ: 0,
-    player: { x: 0, y: 0, roll: 0, isRolling: false, rollAnim: 0, rollDir: 1 },
-    bullets: [], enemyBullets: [], entities: [], particles: [],
-    level: { wave: 1, timer: 0, bossSpawned: false, bossHp: 2000 },
-    groundOffset: 0
-  };
-
-  const FOV = 400; const RENDER_DIST = 8000;
-
-  function project(x, y, z, cx, cy) {
-    if (z <= 10) return null;
-    const scale = FOV / z;
-    return { x: cx + x * scale, y: cy + y * scale, s: scale };
-  }
-
-  const MODELS = {
-    arwing: {
-      verts: [{x:0, y:-10, z:40}, {x:-30, y:5, z:-20}, {x:30, y:5, z:-20}, {x:0, y:-5, z:-20}, {x:0, y:10, z:-10}],
-      faces: [{v:[0,1,3], c:"#ccc"}, {v:[0,2,3], c:"#eee"}, {v:[0,1,4], c:"#666"}, {v:[0,2,4], c:"#888"}, {v:[1,3,4], c:"#00f"}, {v:[2,3,4], c:"#00f"}]
-    },
-    enemy: {
-      verts: [{x:0, y:0, z:30}, {x:-20, y:0, z:-20}, {x:20, y:0, z:-20}, {x:0, y:-20, z:-10}, {x:0, y:20, z:-10}],
-      faces: [{v:[0,1,3], c:"#f0f"}, {v:[0,2,3], c:"#f4f"}, {v:[0,1,4], c:"#808"}, {v:[0,2,4], c:"#a0a"}]
-    },
-    boss: {
-      verts: [{x:0, y:0, z:100}, {x:-150, y:-50, z:-100}, {x:150, y:-50, z:-100}, {x:-150, y:50, z:-100}, {x:150, y:50, z:-100}, {x:0, y:0, z:-150}],
-      faces: [{v:[0,1,3], c:"#f00"}, {v:[0,2,4], c:"#f00"}, {v:[0,1,2], c:"#800"}, {v:[0,3,4], c:"#a00"}, {v:[1,3,5], c:"#400"}, {v:[2,4,5], c:"#400"}]
-    }
-  };
-
-  function drawModel(ctx, model, worldX, worldY, worldZ, rotZ, rotY, cx, cy) {
-    if (worldZ < 10) return;
-    const projected = [];
-    for (let i = 0; i < model.verts.length; i++) {
-        let v = model.verts[i];
-        let r_y = { x: v.x * Math.cos(rotY || 0) + v.z * Math.sin(rotY || 0), z: -v.x * Math.sin(rotY || 0) + v.z * Math.cos(rotY || 0) };
-        let r_z = { x: r_y.x * Math.cos(rotZ) - v.y * Math.sin(rotZ), y: r_y.x * Math.sin(rotZ) + v.y * Math.cos(rotZ) };
-        projected.push(project(r_z.x + worldX - fState.camX, r_z.y + worldY - fState.camY, r_y.z + worldZ - fState.camZ, cx, cy));
-    }
-    for (let face of model.faces) {
-        let pts = face.v.map(idx => projected[idx]);
-        if (pts.some(p => !p)) continue;
-        if ((pts[1].x - pts[0].x) * (pts[2].y - pts[0].y) - (pts[1].y - pts[0].y) * (pts[2].x - pts[0].x) > 0) {
-            ctx.fillStyle = face.c; ctx.strokeStyle = "#000"; ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y);
-            for(let j=1; j<pts.length; j++) ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.closePath(); ctx.fill(); ctx.stroke();
-        }
-    }
-  }
-
-  function toggleStarfox() {
-    foxActive = !foxActive; foxPaused = false;
-    let container = document.getElementById("starfox-container");
-    if (!container) {
-      container = document.createElement("div"); container.id = "starfox-container";
-      container.style.cssText = "position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:20000;";
-      container.innerHTML = `<canvas id="starfox-canvas" style="width:100%;height:100%;"></canvas>
-        <div id="starfox-hud" style="position:absolute;top:20px;left:20px;color:#0f0;font-family:monospace;font-size:24px;">SCORE: <span id="fox-score">00000</span><br>SHIELD: <div style="display:inline-block;width:200px;height:15px;border:2px solid #fff;"><div id="fox-hp" style="height:100%;background:#0f0;width:100%;"></div></div><br>WAVE: <span id="fox-wave">1</span></div>
-        <div id="starfox-msg" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);color:#f00;font-size:4rem;font-weight:bold;display:none;text-shadow:0 0 20px #f00;"></div>`;
-      document.body.appendChild(container);
-    }
-    container.style.display = foxActive ? "block" : "none";
-    if (foxActive) {
-      fState = { score: 0, health: 100, camX: 0, camY: 0, camZ: 0, player: { x: 0, y: 0, roll: 0, isRolling: false, rollAnim: 0, rollDir: 1 }, bullets: [], enemyBullets: [], entities: [], particles: [], level: { wave: 1, timer: 0, bossSpawned: false, bossHp: 2000 }, groundOffset: 0 };
-      foxKeys = {}; window.addEventListener("keydown", foxKeyDn); window.addEventListener("keyup", foxKeyUp); 
-      playSynthSound(150, "square", 1.5); foxLoop();
-    } else {
-      cancelAnimationFrame(foxRaf); window.removeEventListener("keydown", foxKeyDn); window.removeEventListener("keyup", foxKeyUp);
-    }
-  }
-
-  function foxKeyDn(e) {
-    if (!foxActive) return;
-    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        const now = Date.now();
-        if (lastFoxTap.key === e.key && (now - lastFoxTap.time) < 250 && !fState.player.isRolling) {
-            fState.player.isRolling = true; fState.player.rollAnim = 0; fState.player.rollDir = e.key === "ArrowLeft" ? -1 : 1;
-        }
-        lastFoxTap = { key: e.key, time: now };
-    }
-    foxKeys[e.key] = true;
-    if (e.key === "Enter") { foxPaused = !foxPaused; document.getElementById("starfox-msg").innerText = foxPaused ? "PAUSED" : ""; document.getElementById("starfox-msg").style.display = foxPaused ? "block" : "none"; }
-    if (e.key === " " && !foxPaused && !e.repeat) {
-        // Wing Lasers Converging
-        fState.bullets.push({ x: fState.player.x - 45, y: fState.player.y + 15, z: fState.camZ + 100, tx: fState.player.x, ty: fState.player.y, tz: fState.camZ + 3000, vz: 350 });
-        fState.bullets.push({ x: fState.player.x + 45, y: fState.player.y + 15, z: fState.camZ + 100, tx: fState.player.x, ty: fState.player.y, tz: fState.camZ + 3000, vz: 350 });
-        playSynthSound(400, "sawtooth", 0.05);
-    }
-  }
-  function foxKeyUp(e) { if (foxActive) foxKeys[e.key] = false; }
-  function showFoxMsg(text, keep = false) {
-      const m = document.getElementById("starfox-msg"); m.innerText = text; m.style.display = text ? "block" : "none";
-      if(text && !keep) setTimeout(() => m.style.display = "none", 3000);
-  }
-
-  function foxLoop() {
-    if (!foxActive) return;
-    if (foxPaused) { foxRaf = requestAnimationFrame(foxLoop); return; }
-    const canvas = document.getElementById("starfox-canvas"), ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const cx = canvas.width / 2, cy = canvas.height / 2;
-
-    fState.level.timer++; fState.camZ += 60;
-    
-    // Player
-    let speed = fState.player.isRolling ? 35 : 18;
-    if (foxKeys["ArrowLeft"]) { fState.player.x -= speed; if(!fState.player.isRolling) fState.player.roll = -0.5; }
-    else if (foxKeys["ArrowRight"]) { fState.player.x += speed; if(!fState.player.isRolling) fState.player.roll = 0.5; }
-    else fState.player.roll *= 0.8;
-    if (foxKeys["ArrowUp"]) fState.player.y -= speed;
-    if (foxKeys["ArrowDown"]) fState.player.y += speed;
-    if (fState.player.isRolling) { fState.player.rollAnim += 0.5; fState.player.x += fState.player.rollDir * 25; if (fState.player.rollAnim >= Math.PI * 2) { fState.player.isRolling = false; fState.player.rollAnim = 0; } }
-    
-    fState.camX += (fState.player.x - fState.camX) * 0.1; fState.camY += (fState.player.y - fState.camY) * 0.1;
-    fState.player.y = Math.min(300, fState.player.y); // Floor clamp
-    if (fState.player.y > 285) { fState.health -= 0.5; if(Math.random()>0.9) playSynthSound(50, "sawtooth", 0.1); }
-
-    // Wave Progression
-    if (fState.level.timer === 1000) { fState.level.wave = 2; showFoxMsg("WAVE 2: REBEL SQUAD"); }
-    if (fState.level.timer === 2000) { fState.level.wave = 3; showFoxMsg("DANGER: BOSS INBOUND"); }
-
-    // Spawning
-    if (fState.level.wave === 1 && Math.random() > 0.95) {
-        fState.entities.push({ type: "pillar", x: (Math.random()-0.5)*4000, y: 400, z: fState.camZ + RENDER_DIST, hp: 100 });
-    } else if (fState.level.wave === 2 && Math.random() > 0.96) {
-        fState.entities.push({ type: "enemy", x: (Math.random()-0.5)*2000, y: (Math.random()-0.5)*1000, z: fState.camZ + RENDER_DIST, hp: 100, vx: (Math.random()-0.5)*20, lastShoot: 0 });
-    } else if (fState.level.wave === 3 && !fState.level.bossSpawned) {
-        fState.level.bossSpawned = true;
-        fState.entities.push({ type: "boss", x: 0, y: -200, z: fState.camZ + 4000, hp: 3000, vx: 15, lastShoot: 0 });
-    }
-
-    ctx.fillStyle = "#000814"; ctx.fillRect(0,0,canvas.width, canvas.height);
-    
-    // Mode-7 Ground Grid
-    ctx.strokeStyle = "#0044aa"; ctx.lineWidth = 2;
-    for (let z = 200; z < RENDER_DIST; z += 400) {
-        let worldZ = fState.camZ + z - (fState.camZ % 400);
-        let p = project(0 - fState.camX, 400 - fState.camY, worldZ - fState.camZ, cx, cy);
-        if (p && p.y > cy) { ctx.globalAlpha = 1 - (z/RENDER_DIST); ctx.beginPath(); ctx.moveTo(0, p.y); ctx.lineTo(canvas.width, p.y); ctx.stroke(); }
-    }
-    ctx.globalAlpha = 1;
-
-    fState.entities.sort((a,b) => b.z - a.z);
-    fState.entities.forEach((e, i) => {
-      // Logic
-      if (e.type === "enemy" || e.type === "boss") {
-          e.x += e.vx; if(e.type==="boss" && (e.x>1500 || e.x<-1500)) e.vx *= -1;
-          if (e.z - fState.camZ < 4000 && fState.level.timer - e.lastShoot > (e.type==="boss"?30:80)) {
-              let dx = fState.player.x - e.x; let dy = fState.player.y - e.y; let dz = fState.camZ - e.z;
-              let len = Math.sqrt(dx*dx + dy*dy + dz*dz);
-              fState.enemyBullets.push({ x: e.x, y: e.y, z: e.z, vx: (dx/len)*60, vy: (dy/len)*60, vz: (dz/len)*60 });
-              e.lastShoot = fState.level.timer;
-          }
-          if (e.type === "boss") e.z = fState.camZ + 3500;
-      }
-      
-      let relZ = e.z - fState.camZ;
-      if (relZ < 0) { fState.entities.splice(i, 1); return; }
-      let p = project(e.x - fState.camX, e.y - fState.camY, relZ, cx, cy);
-      if (p) {
-        if (e.type === "pillar") {
-            let pTop = project(e.x - fState.camX, e.y - 1500 - fState.camY, relZ, cx, cy);
-            if (pTop) { ctx.fillStyle = "#0ff"; ctx.beginPath(); ctx.moveTo(p.x - 120*p.s, p.y); ctx.lineTo(p.x + 120*p.s, p.y); ctx.lineTo(pTop.x + 120*p.s, pTop.y); ctx.lineTo(pTop.x - 120*p.s, pTop.y); ctx.closePath(); ctx.fill(); }
-        } else if (e.type === "enemy") {
-            drawModel(ctx, MODELS.enemy, e.x, e.y, e.z, fState.level.timer*0.1, 0, cx, cy);
-        } else if (e.type === "boss") {
-            drawModel(ctx, MODELS.boss, e.x, e.y, e.z, 0, Math.sin(fState.level.timer*0.05), cx, cy);
-        }
-        // Player Collision
-        if(!fState.player.isRolling && relZ < 100 && Math.abs(e.x - fState.player.x) < 200 && Math.abs(e.y - fState.player.y) < 200) {
-            fState.health -= 25; playSynthSound(80, "sawtooth", 0.5); if(e.type!=="boss") fState.entities.splice(i, 1);
-        }
-      }
-
-      fState.bullets.forEach((b, bi) => {
-        if (Math.abs(b.z - e.z) < 300 && Math.abs(b.currX - e.x) < 300 && Math.abs(b.currY - e.y) < 300) {
-            e.hp -= 50; fState.bullets.splice(bi, 1); createExplosion(e.x, e.y, e.z, "#ff0");
-            if (e.hp <= 0) { fState.score += (e.type==="boss"?5000:200); fState.entities.splice(i, 1); if(e.type==="boss"){ showFoxMsg("LYLAT SYSTEM SECURED!", true); setTimeout(toggleStarfox, 4000); } }
-        }
-      });
-    });
-
-    // Enemy Bullets
-    fState.enemyBullets.forEach((eb, i) => {
-        eb.x += eb.vx; eb.y += eb.vy; eb.z += eb.vz;
-        if (eb.z < fState.camZ) {
-            if(!fState.player.isRolling && Math.abs(eb.x - fState.player.x) < 100 && Math.abs(eb.y - fState.player.y) < 100) { fState.health -= 10; playSynthSound(120, "sawtooth", 0.2); }
-            fState.enemyBullets.splice(i, 1); return;
-        }
-        let p = project(eb.x - fState.camX, eb.y - fState.camY, eb.z - fState.camZ, cx, cy);
-        if(p) { ctx.fillStyle = "#f00"; ctx.beginPath(); ctx.arc(p.x, p.y, 8*p.s, 0, Math.PI*2); ctx.fill(); }
-    });
-
-    // Player Bullets
-    fState.bullets.forEach((b, i) => {
-        b.z += b.vz; if (b.z > fState.camZ + RENDER_DIST) { fState.bullets.splice(i, 1); return; }
-        const prog = (b.z - (fState.camZ + 100)) / 2900;
-        b.currX = b.x + (b.tx - b.x) * prog; b.currY = b.y + (b.ty - b.y) * prog;
-        let p = project(b.currX - fState.camX, b.currY - fState.camY, b.z - fState.camZ, cx, cy);
-        if (p) { ctx.strokeStyle = "#0ff"; ctx.lineWidth = 5 * p.s; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y - 30*p.s); ctx.stroke(); }
-    });
-
-    // Explosion Particles
-    fState.particles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy; p.z += p.vz; p.life -= 0.05;
-        if (p.life <= 0) { fState.particles.splice(i, 1); return; }
-        let pr = project(p.x - fState.camX, p.y - fState.camY, p.z - fState.camZ, cx, cy);
-        if (pr) { ctx.globalAlpha = p.life; ctx.fillStyle = p.c; ctx.fillRect(pr.x - 20*pr.s, pr.y - 20*pr.s, 40*pr.s, 40*pr.s); }
-    });
-    ctx.globalAlpha = 1;
-
-    // Draw Arwing
-    drawModel(ctx, MODELS.arwing, fState.player.x, fState.player.y, fState.camZ + 200, fState.player.roll + fState.player.rollAnim, 0, cx, cy);
-    
-    // Crosshair
-    ctx.strokeStyle = "#0f0"; ctx.strokeRect(cx - 20, cy - 20, 40, 40);
-    ctx.beginPath(); ctx.moveTo(cx, cy-10); ctx.lineTo(cx, cy+10); ctx.moveTo(cx-10, cy); ctx.lineTo(cx+10, cy); ctx.stroke();
-
-    document.getElementById("fox-score").innerText = fState.score.toString().padStart(5, '0');
-    document.getElementById("fox-hp").style.width = Math.max(0, fState.health) + "%";
-    document.getElementById("fox-wave").innerText = fState.level.wave;
-    if (fState.health <= 0) { showFoxMsg("ARWING DESTROYED", true); setTimeout(toggleStarfox, 3000); }
-    else foxRaf = requestAnimationFrame(foxLoop);
-  }
-
-  function createExplosion(x,y,z,c) { for(let i=0; i<15; i++) fState.particles.push({ x,y,z, vx:(Math.random()-0.5)*50, vy:(Math.random()-0.5)*50, vz:(Math.random()-0.5)*50, life:1, c }); }
-
   // --- ZELDA VISUAL EFFECTS ---
   function createSongOfStorms() {
     const rain = document.createElement("div"); rain.className = "rain-container active"; document.body.appendChild(rain);
@@ -515,7 +332,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ember.style.left = Math.random() * 100 + "vw"; fire.appendChild(ember); setTimeout(() => ember.remove(), 3000);
     }, 50); activeIntervals.push(id); activeEffects.push(fire);
   }
-  function createSongOfTime() { document.body.classList.add("time-warp-active"); }
+  function createSongOfTime() {
+    const overlay = document.createElement("div");
+    overlay.className = "time-warp-overlay";
+    document.body.appendChild(overlay);
+    activeEffects.push(overlay);
+  }
   function createSerenadeOfWater() {
     const water = document.createElement("div"); water.className = "water-overlay"; document.body.appendChild(water);
     const id = setInterval(() => {
@@ -533,9 +355,50 @@ document.addEventListener("DOMContentLoaded", function () {
   function createSunSong() { const sun = document.createElement("div"); sun.className = "sunrise-overlay"; document.body.appendChild(sun); activeEffects.push(sun); }
   function createEponasSong() { const horse = document.createElement("div"); horse.className = "horse-animation"; document.body.appendChild(horse); activeEffects.push(horse); }
   function createZeldasLullaby() { const star = document.createElement("div"); star.className = "lullaby-overlay"; document.body.appendChild(star); activeEffects.push(star); }
-  function createSariasSong() { const sparkle = document.createElement("div"); sparkle.className = "saria-overlay"; document.body.appendChild(sparkle); activeEffects.push(sparkle); }
-  function createPreludeOfLight() { document.documentElement.classList.remove("dark-mode"); }
-  function createNocturneOfShadow() { document.documentElement.classList.add("dark-mode"); }
+  function createSariasSong() {
+    const sparkle = document.createElement("div"); sparkle.className = "saria-overlay"; document.body.appendChild(sparkle); activeEffects.push(sparkle);
+
+    let naviShown = false;
+    function showNaviAfterEffect() {
+      if (naviShown) return;
+      naviShown = true;
+      const navi = document.getElementById("navi");
+      const bubble = navi && navi.querySelector(".navi__bubble");
+      if (navi && bubble) {
+        bubble.textContent = "Hello! I'm Navi! I'll be flying around every now and then... Keep exploring — there might be more secrets waiting for you. Don't say I didn't warn you!";
+        navi.classList.add("navi--show");
+        const heyListen = new Audio("./Others/Exos/notes/songs/hello.mp3");
+        heyListen.play().catch(() => {});
+        setTimeout(() => navi.classList.remove("navi--show"), 10000);
+        if (window.naviBoost) window.naviBoost();
+      }
+    }
+
+    // Appear 1s before the 20s sariaGlow animation fully ends; animationend as fallback
+    setTimeout(showNaviAfterEffect, 16000);
+    sparkle.addEventListener("animationend", showNaviAfterEffect, { once: true });
+  }
+  function createPreludeOfLight() {
+    const flash = document.createElement("div");
+    flash.className = "prelude-flash";
+    document.body.appendChild(flash);
+    activeEffects.push(flash);
+    setTimeout(() => {
+      document.documentElement.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }, 700);
+  }
+
+  function createNocturneOfShadow() {
+    const shadow = document.createElement("div");
+    shadow.className = "nocturne-shadow";
+    document.body.appendChild(shadow);
+    activeEffects.push(shadow);
+    setTimeout(() => {
+      document.documentElement.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    }, 800);
+  }
   function createRequiemOfSpirit() { const sand = document.createElement("div"); sand.className = "sandstorm-overlay"; document.body.appendChild(sand); activeEffects.push(sand); }
 
   // --- SUITE MODES ---
@@ -564,27 +427,94 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function toggleNavi() {
     let b = document.getElementById("hire-bot");
-    if (!b) { 
-      b = document.createElement("div"); b.id = "hire-bot"; 
-      b.innerHTML = `<div class="hire-header">Navi 🧚 <span style="cursor:pointer" onclick="this.parentElement.parentElement.style.display='none'">×</span></div>
-        <div class="hire-messages"><div class="msg msg-bot">Hey listen! I'm Navi, your guide to Khalil's world. What would you like to know?</div></div>
-        <div class="hire-options"><button class="hire-option" onclick="sendHireMsg('Tell me about Khalil')">About Khalil</button>
-        <button class="hire-option" onclick="sendHireMsg('What projects did he do?')">Projects</button>
-        <button class="hire-option" onclick="sendHireMsg('Technical stack?')">Tech Stack</button>
-        <button class="hire-option" onclick="sendHireMsg('Hobbies?')">Hobbies</button>
-        <button class="hire-option" onclick="sendHireMsg('Is he available?')">Hire him!</button></div>`; 
+    if (!b) {
+      b = document.createElement("div");
+      b.id = "hire-bot";
+      b.innerHTML = `
+        <div class="hire-header">
+          <span>🧚 Navi's Info Desk</span>
+          <span class="hire-close">×</span>
+        </div>
+        <div class="hire-messages">
+          <div class="msg msg-bot">Hello! I'm Navi, Khalil's self-appointed guide. Ask me anything about him, or pick a topic below!</div>
+        </div>
+        <div class="hire-options">
+          <button class="hire-option" data-q="Who is Khalil?">Who is Khalil?</button>
+          <button class="hire-option" data-q="Tell me about his projects">Projects</button>
+          <button class="hire-option" data-q="What is his tech stack?">Tech Stack</button>
+          <button class="hire-option" data-q="Is he available?">Available?</button>
+          <button class="hire-option" data-q="Where can I find his CV?">CV / Resume</button>
+          <button class="hire-option hire-option--contact" id="hire-contact-btn">Contact him →</button>
+        </div>
+        <div class="hire-input-area">
+          <input class="hire-input" type="text" placeholder="Ask Navi anything…" />
+          <button class="hire-send">➤</button>
+        </div>
+      `;
       document.body.appendChild(b);
+
+      b.querySelector(".hire-close").addEventListener("click", () => b.style.display = "none");
+
+      b.querySelector("#hire-contact-btn").addEventListener("click", () => {
+        b.style.display = "none";
+        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      });
+
+      b.querySelectorAll(".hire-option[data-q]").forEach(btn => {
+        btn.addEventListener("click", () => sendHireMsg(btn.dataset.q));
+      });
+
+      const input = b.querySelector(".hire-input");
+      b.querySelector(".hire-send").addEventListener("click", () => { sendHireMsg(input.value); input.value = ""; });
+      input.addEventListener("keydown", e => { if (e.key === "Enter") { sendHireMsg(input.value); input.value = ""; } });
+
+      const FALLBACKS = [
+        "Hmm, that's beyond even a fairy's wisdom. Try asking about his projects, stack, or availability!",
+        "I've flown around this portfolio a lot, but I'm not sure about that one. Ask me about Khalil's skills or projects!",
+        "Even the Great Deku Tree couldn't help me there. Try: 'projects', 'tech stack', or 'is he available?'",
+        "That question sent me straight to the Lost Woods. I'm good on: projects, skills, contact, availability…",
+      ];
+
       window.sendHireMsg = (text) => {
-        const msgs = b.querySelector(".hire-messages"); msgs.innerHTML += `<div class="msg msg-user">${text}</div>`;
+        if (!text.trim()) return;
+        const msgs = b.querySelector(".hire-messages");
+        msgs.innerHTML += `<div class="msg msg-user">${text}</div>`;
+        msgs.scrollTop = msgs.scrollHeight;
         setTimeout(() => {
-          let reply = "He is actively looking for apprenticeship! Check his CV!";
           const lt = text.toLowerCase();
-          if (lt.includes("about")) reply = "Khalil is a dedicated Full Stack student in France. Passionate and creative!";
-          else if (lt.includes("projects")) reply = "Solar system visualizer, Laravel microblogging, and Scrapidoo extension!";
-          else if (lt.includes("stack")) reply = "React, Node.js, PHP, Go and Kotlin!";
-          else if (lt.includes("hobbies")) reply = "3D animations, gaming, and easter eggs!";
-          msgs.innerHTML += `<div class="msg msg-bot">${reply}</div>`; msgs.scrollTop = msgs.scrollHeight;
-        }, 800);
+          let reply;
+          if (lt.match(/who|about|khalil|person|himself|background|bio/)) {
+            reply = "Khalil is a passionate Full Stack developer based in France. Creative, curious, and the kind of person who hides a Starfox engine inside a portfolio. He's currently applying to university to keep levelling up.";
+          } else if (lt.match(/project|work|built|made|app|website/)) {
+            reply = "He's built a Solar System visualizer, a Laravel microblogging platform, Scrapidoo (a Chrome extension), a PICO-8 game, and more. All in the Projects section — go take a look!";
+          } else if (lt.match(/stack|tech|language|framework|tool|code|program/)) {
+            reply = "HTML, CSS, JavaScript, PHP, Go, Kotlin, React, Laravel, Node.js. He picks up new tech fast — just look at how many Ocarina songs this page supports.";
+          } else if (lt.match(/skill|capab|know|expert|level/)) {
+            reply = "Strong on the frontend, growing fast on the backend. He adapts quickly. You don't build a working 3D Starfox engine from scratch without picking things up fast.";
+          } else if (lt.match(/hire|avail|open|opportun|job|position|recruit|looking|apprenti/)) {
+            reply = "Yes! He's actively looking for opportunities and is also applying to university right now. Ready for the next quest. Click 'Contact him →' below!";
+          } else if (lt.match(/univers|school|study|educat|formation|degree|diplom|bachelor|master/)) {
+            reply = "He's currently applying to university to pursue his studies further in development. Strong practical foundation from his current programme — check the projects as proof.";
+          } else if (lt.match(/contact|reach|email|message|touch|talk|meet/)) {
+            reply = "Scroll down to the Contact section — there's a form right there. Or hit 'Contact him →' below and I'll take you straight to it!";
+          } else if (lt.match(/cv|resume|download|pdf/)) {
+            reply = "Drop him a message via the Contact section and he'll send his CV right over. Go ahead, he doesn't bite!";
+          } else if (lt.match(/salary|pay|money|compensation|rate|wage|rupee/)) {
+            reply = "Ah, the rupee question! That's between you and Khalil. Head to the Contact section and make him an offer he can't refuse.";
+          } else if (lt.match(/hobby|interest|fun|passion|free time|game|gaming|outside/)) {
+            reply = "Gaming, 3D animation, and hiding easter eggs in portfolios. The Ocarina in the header didn't build itself, you know.";
+          } else if (lt.match(/locat|where|city|country|france|paris|remote/)) {
+            reply = "Based in France, remote-friendly too. The internet reaches Hyrule just fine.";
+          } else if (lt.match(/experienc|year|senior|junior|how long/)) {
+            reply = "Junior developer with a strong project track record for his level. Quality over years — the Projects section speaks for itself.";
+          } else if (lt.match(/hello|hi |hey|bonjour|salut/)) {
+            reply = "Hey! Liste— I mean, hello to you too! Ask me anything about Khalil!";
+          } else {
+            reply = FALLBACKS[Math.floor(Math.random() * FALLBACKS.length)];
+          }
+          msgs.innerHTML += `<div class="msg msg-bot">${reply}</div>`;
+          msgs.scrollTop = msgs.scrollHeight;
+        }, 700);
       };
     }
     b.style.display = (b.style.display === "flex") ? "none" : "flex";
