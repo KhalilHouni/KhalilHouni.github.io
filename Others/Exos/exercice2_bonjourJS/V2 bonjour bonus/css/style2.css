@@ -1,0 +1,69 @@
+/* Style pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #ff6b6b, #ffb8b8);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative; /* Ajoutez cette propriété pour positionner les images par rapport au corps de la page */
+}
+
+
+
+#leftWall, #rightWall {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 30%; /* Largeur des images (30% de la largeur de la fenêtre) */
+    opacity: 0.8; /* Opacité des bords des images (plus transparentes) */
+    z-index: -1; /* Placez les images derrière le contenu de la page */
+}
+
+#leftWall {
+    left: 0;
+    background: url('img/wall1.jpg') no-repeat center center;
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir toute la zone */
+}
+
+#rightWall {
+    right: 0;
+    background: url('img/wall2.jpg') no-repeat center center;
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir toute la zone */
+}
+
+
+/* Style pour le titre h1 */
+h1 {
+    color: #ff6347; /* Rouge foncé pour le titre h1 */
+    background-color: #fff0e8; /* Nuance de blanc cassé pour l'arrière-plan du titre h1 */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px; /* Coins arrondis pour le titre */
+}
+
+/* Style pour la zone de sortie */
+#output {
+    margin-top: 20px; /* Marge entre le titre et le contenu de sortie */
+}
+
+/* Style pour le bouton */
+.button {
+    background-color: #007bff; /* Bleu vif pour le bouton */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 5px; /* Coins arrondis pour le bouton */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Animation de transition fluide */
+}
+
+/* Style pour le bouton quand il est survolé */
+.button:hover {
+    background-color: #0056b3; /* Nuance plus sombre de bleu lorsqu'il est survolé */
+}
+

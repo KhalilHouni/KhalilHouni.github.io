@@ -1,0 +1,30 @@
+/*
+h1 {
+    color: rgb(273, 72, 50);
+    background-color: rgb(248, 217, 209);
+}
+*/
+h1 {
+    color: rgb(255, 99, 71); /* Utilisez une nuance de rouge pour le titre h1 */
+    background-color: rgb(255, 228, 196); /* Utilisez une nuance de beige pour l'arrière-plan du titre h1 */
+    padding: 20px; /* Ajoute de la marge intérieure au titre h1 */
+    text-align: center; /* Centre le texte dans le titre h1 */
+}
+
+body {
+    font-family: Arial, sans-serif; /* Utilisez la police Arial ou une police sans-serif par défaut */
+    background-color: rgb(240, 240, 240); /* Utilisez une nuance de gris clair pour l'arrière-plan de la page */
+    padding: 20px; /* Ajoute de la marge intérieure à l'ensemble de la page */
+}
+
+button {
+    background-color: rgb(70, 130, 180); /* Utilisez une nuance de bleu pour le bouton */
+    color: white; /* Texte blanc sur le bouton */
+    border: none; /* Pas de bordure sur le bouton */
+    padding: 10px 20px; /* Ajoute de la marge intérieure au bouton */
+    cursor: pointer; /* Change le curseur en main lorsque survolé */
+}
+
+button:hover {
+    background-color: rgb(0, 102, 204); /* Change la couleur du bouton quand il est survolé */
+}
