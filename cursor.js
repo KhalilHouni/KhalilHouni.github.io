@@ -30,4 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mouseout", (e) => {
     if (e.target.closest(INTERACTIVE)) dot.classList.remove("cursor--hover");
   });
+
+  document.addEventListener("mouseleave", () => dot.style.opacity = "0");
+  document.addEventListener("mouseenter", () => dot.style.opacity = "1");
 });
